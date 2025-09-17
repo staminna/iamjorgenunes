@@ -44,13 +44,8 @@ function App() {
 
   return (
     <>
-      <header style={{ position: 'fixed', top: '10px', left: '50%', transform: 'translateX(-50%)', zIndex: 1000, backgroundColor: 'rgba(36, 36, 36, 0.9)', padding: '1rem', borderRadius: '12px', textAlign: 'center' }}>
-        <h1 style={{ margin: 0, fontSize: '2rem', textAlign: 'center', color: '#fff' }}>Jorge Nunes</h1>
-        <h2 style={{ margin: '0.5rem 0 0 0', fontSize: '1.2rem', color: '#aaa', textAlign: 'center' }}>Technology Stack</h2>
-      </header>
-      
       <footer style={{ position: 'fixed', bottom: '10px', left: '50%', transform: 'translateX(-50%)', zIndex: 1000, backgroundColor: 'rgba(36, 36, 36, 0.9)', padding: '0.8rem 1.5rem', borderRadius: '12px', textAlign: 'center' }}>
-        <p style={{ margin: 0, fontSize: '0.9rem', color: '#aaa' }}>© 2024 Jorge Nunes - Full Stack Developer</p>
+        <p style={{ margin: 0, fontSize: '0.9rem', color: '#aaa' }}> 2024 Jorge Nunes - Full Stack / Multiplatform Developer, Cloud Operations, AI/ML Engineer, MLOps Engineer</p>
       </footer>
       
       <TagCloud />

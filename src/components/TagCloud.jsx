@@ -10,11 +10,11 @@ const MyTagCloud = () => {
     
     // Calculate base radius based on window size - even smaller for very close tags
     const diagonal = Math.sqrt(windowWidth * windowWidth + windowHeight * windowHeight);
-    const baseRadius = diagonal * 0.1;
+    const baseRadius = diagonal * 0.15;
     
     // Technologies to display
     const technologies = [
-      'JavaScript', 'TypeScript', 'React', 'Vue.js', 'Node.js', 'Express', 'Next.js',
+      'Python', 'TypeScript', 'React', 'Vue.js', 'Node.js', 'Express', 'Next.js',
       'HTML5', 'CSS3', 'SASS', 'LESS', 'Tailwind CSS',
       'Bootstrap', 'Material UI', 'Chakra UI', 'Styled Components',
       'Redux', 'Vuex', 'GraphQL', 'MCP', 'Claude',
@@ -24,10 +24,10 @@ const MyTagCloud = () => {
       'Jest', 'Testing Library', 'MongoDB', 'Mocha', 'Chai',
       'Webpack', 'Babel', 'ESLint', 'Prettier', 'npm',
       'Yarn', 'pnpm', 'Vite', 'Rollup', 'esbuild',
-      'Three.js', 'D3.js', 'WebGL', 'Canvas', 'SVG', 'OpenGL',
+      'Three.js', 'D3.js', 'WebGL', 'Canvas', 'Responsive Design', 'OpenGL',
       'PWA', 'Electron', 'React Native', 'Flutter', 'Swift',
-      'Java', 'Python', 'Conda', 'Ruby', 'PHP', 'Cursor', 'Windsurf',
-      'Go', 'Rust', 'C', 'C++', 'ML', 'Computer Vision', 'Ultralytics', 'Mediapipe', 'Tenserflo'
+      'Javascript', 'npm', 'npx', 'yarn', 'bun', 'pnpm', 'Conda', 'Ruby', 'PHP', 'Cursor', 'Windsurf',
+      'Go', 'C', 'C++', 'ML', 'Computer Vision', 'Ultralytics', 'Mediapipe', 'Tenserflow'
     ];
 
     // Create tag elements
@@ -53,8 +53,9 @@ const MyTagCloud = () => {
         const y = radius * Math.sin(angle2) * Math.sin(angle1);
         const z = radius * Math.cos(angle2);
         
-        // Apply 3D transform
-        tag.style.transform = `translate3d(${x}px, ${y}px, ${z}px)`;
+        // Apply 3D transform with billboard effect (always face user)
+        tag.style.transform = `translate3d(${x}px, ${y}px, ${z}px) rotateY(0deg) rotateX(0deg)`;
+        tag.style.transformStyle = 'preserve-3d';
         
         // Random size based on z position (closer = larger) and window size - extremely large
         const baseFontSize = Math.max(32, Math.min(windowWidth, windowHeight) / 20);
@@ -95,6 +96,18 @@ const MyTagCloud = () => {
         
         // Apply rotation to container
         container.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
+        
+        // Make all tags face the user by applying counter-rotations
+        const tags = container.querySelectorAll('.tag');
+        tags.forEach(tag => {
+          const currentTransform = tag.style.transform;
+          const translateMatch = currentTransform.match(/translate3d\([^)]+\)/);
+          if (translateMatch) {
+            const translatePart = translateMatch[0];
+            // Apply counter-rotation to make text always face user
+            tag.style.transform = `${translatePart} rotateY(${-rotationY}deg) rotateX(${-rotationX}deg)`;
+          }
+        });
         
         requestAnimationFrame(animation);
       };
@@ -186,9 +199,9 @@ const MyTagCloud = () => {
   return (
     <div style={{ 
       width: '100vw', 
-      height: 'calc(100vh - 160px)', 
+      height: 'calc(100vh - 80px)', 
       position: 'fixed', 
-      top: '80px', 
+      top: 0, 
       left: 0, 
       right: 0, 
       bottom: '80px',

@@ -1,17 +1,11 @@
 #!/bin/sh
 
-# Kill any process using port 3000
-echo "Checking for processes using port 3000..."
-PORT_PID=$(lsof -t -i:3000)
-if [ -n "$PORT_PID" ]; then
-  echo "Killing process $PORT_PID using port 3000"
-  kill -9 $PORT_PID
-  sleep 1
-fi
+echo "🚀 Starting production deployment..."
 
-# Kill any existing serve processes
-echo "Stopping any existing serve processes..."
-pkill -f "npx serve" || true
+# Stop existing PM2 process
+echo "Stopping existing PM2 process..."
+pm2 stop iamjorgenunes-com 2>/dev/null || true
+pm2 delete iamjorgenunes-com 2>/dev/null || true
 
 # Clean cache and build artifacts safely
 echo "Cleaning cache and build artifacts..."
@@ -36,7 +30,7 @@ cat > index.html << 'EOF'
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jorge Nunes - Technology Stack</title>
+    <title>iamjorgenunes.com - Jorge Domingues Nunes</title>
   </head>
   <body>
     <div id="root"></div>
@@ -47,13 +41,27 @@ EOF
 echo "Created clean development index.html"
 
 # Build project
-echo "Building project..."
+echo "Building project for production..."
 npm run build
 
 # Copy dist files to root
 echo "Copying dist files to root..."
 cp -r dist/* .
 
-# Start server
-echo "Starting server on port 3000..."
-npx serve -s -l 3000
+# Create logs directory
+mkdir -p logs
+
+# Start with PM2
+echo "Starting application with PM2..."
+pm2 start ecosystem.config.js
+
+# Save PM2 configuration
+pm2 save
+
+# Show status
+pm2 status
+
+echo "✅ Production deployment complete!"
+echo "🌐 Application running at: http://localhost:3000"
+echo "📊 Monitor with: pm2 monit"
+echo "📋 View logs with: pm2 logs iamjorgenunes-com"
