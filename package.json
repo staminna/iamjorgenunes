@@ -13,7 +13,7 @@
     "tailwindcss"
   ],
   "scripts": {
-    "dev": "npm run cms:cache && npm run toml:watch --watch & astro dev",
+    "dev": "npm run cms:cache && node scripts/toml-watcher.mjs && astro dev",
     "build": "npm run cms:cache && npm run toml:watch && astro build && npm run remove-draft-from-sitemap",
     "preview": "npm run cms:cache && astro build && npm run remove-draft-from-sitemap && astro preview",
     "astro-check": "astro check",

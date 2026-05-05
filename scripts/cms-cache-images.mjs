@@ -55,11 +55,16 @@ async function main() {
   console.log(`Caching Directus assets to ${path.relative(ROOT, CACHE_DIR)}/`);
 
   const uuids = new Set();
-  for (const collection of ["portfolio", "services"]) {
+  // Fields per collection — only portfolio has the gallery M2M.
+  const fieldsByCollection = {
+    portfolio: "image,images,image_file,gallery.directus_files_id",
+    services: "image,image_file",
+  };
+  for (const collection of Object.keys(fieldsByCollection)) {
     let json;
     try {
       json = await api(
-        `/items/${collection}?limit=-1&fields=image,images,image_file,gallery.directus_files_id`,
+        `/items/${collection}?limit=-1&fields=${fieldsByCollection[collection]}`,
       );
     } catch (err) {
       console.warn(`  ! could not list ${collection}: ${err.message}`);
