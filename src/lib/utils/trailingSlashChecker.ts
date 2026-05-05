@@ -12,6 +12,12 @@ const trailingSlashChecker = (url: string): string => {
     return url;
   }
 
+  // Don't modify file URLs (.pdf, .zip, .jpg, etc.) — appending "/" turns
+  // them into a directory request that nginx falls back to index.html.
+  if (/\.[a-z0-9]{2,5}(\?|#|$)/i.test(url)) {
+    return url;
+  }
+
   // Separate the URL path from the fragment (if any)
   const [urlPath, fragment] = url.split("#");
 
