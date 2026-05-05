@@ -1,10 +1,13 @@
 ---
 title: about
-name: "Cezar Kelso"
-designation: "Senior Detective"
-location: Los Angeles, CA 90001
-pronouns: "he/him/el"
-website: "http://tafutza.hn/kos"
+name: "Jorge Domingues Nunes"
+designation: "AI Engineer"
+location: Pombal, Portugal
+email: stamina.nunes@gmail.com
+phone: +351 914 764 120
+website: "https://www.linkedin.com/in/stamina/"
 ---
 
-Highly skilled and experienced law enforcement professional with over two decades of service in various specialized units. Adept at conducting complex investigations, coordinating tactical operations, and providing leadership in high-pressure situations. Known for exceptional problem-solving abilities, strategic thinking, and dedication to upholding the law. Seeking opportunities to leverage expertise in a challenging environment where I can continue to make a meaningful impact.
+Senior AI Engineer with 8+ years of commercial software development and deep expertise in production-grade LLM systems beyond MVPs. I specialize in deploying and maintaining LLM-powered applications at scale in enterprise environments — building RAG pipelines that connect LLMs to live business data, designing agent tooling and semantic layers over knowledge graphs, implementing vector-search architectures, and creating cognitive memory systems where agents maintain state, learn from interactions, and make context-aware decisions.
+
+Deep proficiency in Python (FastAPI, Flask) with async programming, 3+ years building RAG pipelines and multi-agent architectures with OpenAI, Anthropic, Google Gemini, and LangChain/LlamaIndex. Strong LLMOps expertise covering AI observability, hallucination mitigation, prompt engineering, MLflow evaluation, and performance monitoring. Skilled in Docker, Kubernetes (AKS), Helm, CI/CD pipelines, and cloud platforms (Azure, AWS, GCP).

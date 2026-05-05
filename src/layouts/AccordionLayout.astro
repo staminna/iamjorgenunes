@@ -5,8 +5,8 @@ const { title, icon } = Astro.props;
 ---
 
 <BaseLayout>
-  <div class="collapse collapse-arrow ease-in-out duration-700">
-    <input aria-label={title} type="checkbox"/>
+  <div class="collapse collapse-arrow ease-in-out duration-700" data-section={title}>
+    <input aria-label={title} type="checkbox" data-section-toggle={title} />
     <div class="collapse-title font-extrabold tracking-tight md:text-2xl">
       <div class="flex">
         <Icon name={icon} class="w-8 h-8 mr-4" />
@@ -18,3 +18,19 @@ const { title, icon } = Astro.props;
     </div>
   </div>
 </BaseLayout>
+
+<script>
+  import { activeSection } from "../stores/ui";
+
+  const toggles = document.querySelectorAll<HTMLInputElement>("[data-section-toggle]");
+
+  for (const toggle of toggles) {
+    if (toggle.dataset.sectionToggle === activeSection.get()) {
+      toggle.checked = true;
+    }
+    toggle.addEventListener("change", () => {
+      if (toggle.checked) activeSection.set(toggle.dataset.sectionToggle ?? "");
+      else if (activeSection.get() === toggle.dataset.sectionToggle) activeSection.set("");
+    });
+  }
+</script>
