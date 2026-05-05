@@ -58,12 +58,22 @@ async function main() {
   for (const collection of ["portfolio", "services"]) {
     let json;
     try {
-      json = await api(`/items/${collection}?limit=-1&fields=image,images`);
+      json = await api(
+        `/items/${collection}?limit=-1&fields=image,images,image_file,gallery.directus_files_id`,
+      );
     } catch (err) {
       console.warn(`  ! could not list ${collection}: ${err.message}`);
       continue;
     }
     for (const item of json.data || []) {
+      // New file_picker fields take priority
+      if (item.image_file) uuids.add(item.image_file);
+      for (const row of item.gallery || []) {
+        const id =
+          typeof row === "string" ? row : row?.directus_files_id || null;
+        if (id) uuids.add(id);
+      }
+      // Legacy URL fields (still backed by Directus during migration)
       const u1 = extractUuid(item.image);
       if (u1) uuids.add(u1);
       for (const img of item.images || []) {

@@ -25,6 +25,7 @@
     "cms:bootstrap": "node ./scripts/cms-bootstrap.mjs",
     "cms:migrate": "node ./scripts/cms-migrate.mjs",
     "cms:upload-images": "node ./scripts/cms-upload-images.mjs",
+    "cms:file-pickers": "node ./scripts/cms-file-pickers.mjs",
     "format": "prettier -w ./src"
   },
   "engines": {

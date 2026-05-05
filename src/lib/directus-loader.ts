@@ -28,6 +28,45 @@ export function rewriteDirectusUrl(value?: string | null): string | undefined {
   return `/images/cms/${uuid}.jpg`;
 }
 
+/** Convert a Directus file UUID to the cached local path. */
+export function fileUuidToLocalPath(uuid?: string | null): string | undefined {
+  if (!uuid) return undefined;
+  return `/images/cms/${uuid}.jpg`;
+}
+
+/** Resolve a portfolio/services item's "image" — prefers new file_picker UUID
+ * over the legacy `image` URL string. Returns the cached local path. */
+export function resolveItemImage(item: {
+  image_file?: string | null;
+  image?: string | null;
+}): string | undefined {
+  return (
+    fileUuidToLocalPath(item.image_file) || rewriteDirectusUrl(item.image)
+  );
+}
+
+/** Map an expanded gallery (M2M to directus_files) to local image paths.
+ * Falls back to the legacy `images` string array when the gallery is empty. */
+export function resolveItemGallery(item: {
+  gallery?: Array<{ directus_files_id?: string | null } | string> | null;
+  images?: Array<string | null> | null;
+}): string[] {
+  if (Array.isArray(item.gallery) && item.gallery.length) {
+    return item.gallery
+      .map((row) => {
+        if (typeof row === "string") return fileUuidToLocalPath(row);
+        return fileUuidToLocalPath(row?.directus_files_id);
+      })
+      .filter((s): s is string => !!s);
+  }
+  if (Array.isArray(item.images)) {
+    return item.images
+      .map((s) => rewriteDirectusUrl(s))
+      .filter((s): s is string => !!s);
+  }
+  return [];
+}
+
 interface DirectusItem {
   id: string | number;
   status?: string;
@@ -42,13 +81,19 @@ interface DirectusLoaderOptions<T extends DirectusItem> {
   collection: string;
   /** Sort param sent to Directus (default: "sort,date,id"). */
   sort?: string;
+  /** Optional ?fields= query (e.g. to expand M2M relations). */
+  fields?: string;
   /** Map a Directus row → { idSuffix, data }. idSuffix becomes the part after "english/". */
   transform: (item: T) => { idSuffix: string; data: Record<string, unknown> };
   /** When true, render `body` markdown to HTML and attach as rendered.html. */
   renderMarkdownBody?: boolean;
 }
 
-async function fetchAll<T>(collection: string, sort: string): Promise<T[]> {
+async function fetchAll<T>(
+  collection: string,
+  sort: string,
+  fields?: string,
+): Promise<T[]> {
   if (!DIRECTUS_URL || !DIRECTUS_TOKEN) {
     throw new Error(
       "DIRECTUS_URL or DIRECTUS_TOKEN not set — cannot load CMS content.",
@@ -58,6 +103,7 @@ async function fetchAll<T>(collection: string, sort: string): Promise<T[]> {
   url.searchParams.set("limit", "-1");
   url.searchParams.set("sort", sort);
   url.searchParams.set("filter[status][_eq]", "published");
+  if (fields) url.searchParams.set("fields", fields);
   const res = await fetch(url, {
     headers: { Authorization: `Bearer ${DIRECTUS_TOKEN}` },
   });
@@ -98,6 +144,7 @@ export function directusLoader<T extends DirectusItem>(
       const items = await fetchAll<T>(
         opts.collection,
         opts.sort || "sort,date,id",
+        opts.fields,
       );
       store.clear();
       for (const item of items) {

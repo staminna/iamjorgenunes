@@ -3,7 +3,12 @@ import config from ".astro/config.generated.json";
 import { button, sectionsSchema } from "./sections.schema";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
-import { directusLoader, rewriteDirectusUrl } from "./lib/directus-loader";
+import {
+  directusLoader,
+  rewriteDirectusUrl,
+  resolveItemImage,
+  resolveItemGallery,
+} from "./lib/directus-loader";
 // Importing the loader runs its dotenv side-effect, so process.env now
 // reflects the .env file values regardless of the parent shell state.
 
@@ -61,6 +66,7 @@ const serviceCollection = defineCollection({
     ? directusLoader({
         collection: "services",
         sort: "sort,date,id",
+        fields: "*",
         renderMarkdownBody: true,
         transform: (item: any) => ({
           idSuffix: item.slug,
@@ -69,7 +75,7 @@ const serviceCollection = defineCollection({
             customSlug: item.slug,
             description: item.description ?? undefined,
             icon: rewriteDirectusUrl(item.icon),
-            image: rewriteDirectusUrl(item.image),
+            image: resolveItemImage(item),
             date: item.date ?? undefined,
           },
         }),
@@ -89,22 +95,29 @@ const portfolioCollection = defineCollection({
     ? directusLoader({
         collection: "portfolio",
         sort: "sort,date,id",
+        fields: "*,gallery.directus_files_id",
         renderMarkdownBody: true,
-        transform: (item: any) => ({
-          idSuffix: item.slug,
-          data: {
-            title: item.title,
-            customSlug: item.slug,
-            description: item.description ?? undefined,
-            date: item.date ?? undefined,
-            image: rewriteDirectusUrl(item.image),
-            images: Array.isArray(item.images)
-              ? item.images.map(rewriteDirectusUrl).filter(Boolean)
-              : undefined,
-            categories: item.categories ?? undefined,
-            information: item.information ?? undefined,
-          },
-        }),
+        transform: (item: any) => {
+          const cover = resolveItemImage(item);
+          const gallery = resolveItemGallery(item);
+          // Cover always first; dedupe so the swiper doesn't show duplicates.
+          const allImages = cover
+            ? [cover, ...gallery.filter((g) => g !== cover)]
+            : gallery;
+          return {
+            idSuffix: item.slug,
+            data: {
+              title: item.title,
+              customSlug: item.slug,
+              description: item.description ?? undefined,
+              date: item.date ?? undefined,
+              image: cover,
+              images: allImages.length ? allImages : undefined,
+              categories: item.categories ?? undefined,
+              information: item.information ?? undefined,
+            },
+          };
+        },
       })
     : glob({
         base: `./src/content/${portfolioFolder}`,
