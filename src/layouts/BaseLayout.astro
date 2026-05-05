@@ -8,8 +8,8 @@ interface Props {
 }
 
 const {
-    title = "Jorge Domingues Nunes — AI Engineer",
-    description = "CV of Jorge Domingues Nunes, AI Engineer specialising in production-grade LLM systems, RAG pipelines and multi-agent architectures.",
+    title = "Jorge Domingues Nunes — Senior Full Stack Developer",
+    description = "CV of Jorge Domingues Nunes, Senior Full Stack Developer specialising in production-grade LLM systems, RAG pipelines and multi-agent architectures.",
 } = Astro.props;
 ---
 
@@ -43,7 +43,12 @@ const {
 
 <style is:global>
     body {
-        font-family: "DM Sans Variable", sans-serif;
+        font-family: Tahoma, "DM Sans Variable", Geneva, Verdana, sans-serif;
+        color: #1d4ed8;
+    }
+
+    [data-theme="black"] body {
+        color: #60a5fa;
     }
 
     @media (min-width: 768px) {

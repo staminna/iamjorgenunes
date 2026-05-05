@@ -24,7 +24,7 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				'sans': ["DM Sans", "Inter", ...defaultTheme.fontFamily.sans],
+				'sans': ["Tahoma", "DM Sans", "Inter", ...defaultTheme.fontFamily.sans],
 			},
 		},
 	},

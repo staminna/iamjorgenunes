@@ -1,24 +1,26 @@
 ---
-title: Principal AI Engineer
+title: Principal Engineer
 date: 01/2024 - 10/2025
 url: https://keyprog.com
 location: Remote
 org: Keyprog
 tags:
   [
-    "MCP Server",
-    "RAG",
+    "Node.js",
     "Directus",
-    "Kubernetes (AKS)",
+    "MCP Server",
     "PostgreSQL",
     "Redis",
-    "MLflow",
+    "Nginx",
+    "Stripe",
+    "Docker",
     "GitHub Actions",
   ]
 ---
 
-- Architected and deployed a production-grade LLM-powered e-commerce platform with AI-driven content management; built multi-agent systems for automated business workflows with enterprise-scale AI integration.
-- Developed an MCP (Model Context Protocol) server with 29+ AI tools enabling natural-language database interactions; implemented RAG pipelines, prompt engineering for hallucination reduction and LLM evaluation frameworks.
-- Designed scalable backend services with Directus, Docker, Kubernetes (AKS), PostgreSQL and Redis; established LLMOps best practices including AI observability, automated evaluation with MLflow and performance monitoring.
-- Mentored the engineering team on LLM integration patterns, ran code reviews and led design discussions; established CI/CD pipelines with GitHub Actions and security protocols for AI systems.
-- Designed a granular role-based permission system for AI tool access and data flows.
+- E-commerce platform with dropshipping for electrical devices in the automotive industry; scalable backend with Directus CMS and a React/TypeScript frontend supporting real-time data processing and full CRUD operations.
+- AI integration: AI agents with 29+ MCP (Model Context Protocol) tools for orchestration against relational databases, exposing Directus SDK and API support for AI-powered content management.
+- Node.js infrastructure: fully containerized Docker environment with PostgreSQL, Redis caching and Nginx reverse proxy with load balancing; secured with SSL/TLS and two-factor authentication.
+- E-commerce features: Stripe payment gateway with automated transactional emails, order confirmations and invoice generation; real-time product and inventory updates via webhook architecture.
+- Security & access control: role-based permissions with 4 access levels (Admin, Editor, Client, Public); JWT, OAuth2 and OpenID.
+- DevOps & CI/CD: GitHub Actions pipelines with Husky hooks and Trufflehog secret scanning.

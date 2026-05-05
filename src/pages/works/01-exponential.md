@@ -1,27 +1,28 @@
 ---
-title: Founder & AI Solutions Architect
-date: 11/2025 - Present
+title: Founder & Lead Python Developer
+date: 10/2025 - Present
 url: https://www.api.iamjorgenunes.com
 location: Pombal, Portugal
-org: Exponential
+org: Exponential (Agentic Platform Factory)
 tags:
   [
-    "Terraform",
-    "Kubernetes",
+    "Python",
     "FastAPI",
     "LangChain",
     "LangGraph",
     "Ollama",
+    "Kubernetes",
+    "Terraform",
     "RAG",
     "ChromaDB",
     "React",
     "Flutter",
-    "ISO/IEC 42001",
   ]
 ---
 
-- Designed Terraform preset system with 32 deployment presets across 4 role categories (Data Provider, Token Consumer, Platform Operator, Agent Developer) for Docker, AWS, GCP and Azure; architected K8s cluster with custom CRDs for agent pods, Kustomize overlays, Helm charts and Ansible playbooks for post-deploy configuration.
-- Integrated multiple LLM providers — Ollama (Mistral 7B, Llama 3.2, Qwen 2.5-Coder, DeepSeek-Coder) as primary with Anthropic Claude as fallback. Built WebRAG with knowledge-base management, hybrid search, per-user conversation memory and intelligent caching achieving 90% cost reduction.
-- Built Python FastAPI backend (200+ endpoints) with LangChain/LangGraph multi-agent orchestration, ChromaDB vector storage and Prometheus monitoring; implemented 6 user roles, tiered subscriptions, token-based billing and wallet management.
-- Developed React web dashboard and Flutter cross-platform mobile app (iOS/Android) with embeddable chatbot widget; integrated n8n for workflow automation and Langfuse/MLflow for LLM observability.
-- Implemented ISO/IEC 42001 AI governance with risk classification, CSA STAR / SOC 2 Type II audit logging, GDPR controls and ESG metrics tracking; built agent marketplace with LangGraph tool integrations and Ollama-powered local inference.
+- AI backend architecture: Python-based agentic backend with multi-model fallback across Ollama (Llama, Mistral, Qwen local models), OpenAI (GPT-4o), Anthropic (Claude Sonnet/Opus) and Google (Gemini); automatic failover for 99.9% AI service availability.
+- Kubernetes & DevOps: engineered a Kubernetes deployment pipeline achieving 2-second time-to-production; fully automated CI/CD with Terraform IaC, container orchestration and auto-scaling for multi-tenant environments.
+- Terraform UI exposure: surfaced Terraform infrastructure provisioning directly in the frontend through multi-step forms, enabling non-technical users to deploy and manage cloud resources via guided chatbot-assisted workflows.
+- Frontend platforms: React web dashboard and Flutter mobile app for cross-platform agent management, real-time monitoring and interactive chatbot interfaces with streaming LLM responses.
+- MCP server & agent orchestration: multi-environment MCP servers bridging localhost development and production VPS; agent pipelines with RAG, vector search (Pinecone, Qdrant, ChromaDB) and cognitive memory systems for stateful AI reasoning.
+- Stack: Python, FastAPI, LangChain, LangGraph, Ollama, Docker, Kubernetes, Terraform, React, Flutter, PostgreSQL, Redis, Pinecone, Qdrant, ChromaDB, GitHub Actions.
