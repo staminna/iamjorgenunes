@@ -1,0 +1,20 @@
+{
+  "common": {
+    "viewDetails": "View Details",
+    "learnMoreAbout": "Learn more about",
+    "paginationPrevious": "Previous",
+    "paginationNext": "Next",
+    "paginationPortfolioPrev": "Previous Project",
+    "paginationPortfolioNext": "Next Project"
+  },
+  "headerOffcanvas": {
+    "description": "Senior Full Stack Developer building agentic AI platforms and shipping secure systems for restricted environments.",
+    "buttonLabel": "Download CV"
+  },
+  "navigation": {
+    "buttonLabel": "Get in touch"
+  },
+  "footer": {
+    "copyright": "Copyright © {{ year }} Jorge Nunes — Built with Astro on the [Folex Lite](https://github.com/getastrothemes/folex-lite-astro) theme."
+  }
+}

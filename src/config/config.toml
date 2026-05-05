@@ -1,0 +1,110 @@
+# Site Configuration
+[site]
+  title            = "Jorge Nunes"
+  description      = "Senior Full Stack Developer specialised in agentic AI platforms, production-grade LLM systems and secure delivery in restricted environments."
+  tagline          = "AI Engineer · Senior Full Stack Developer"
+  taglineSeparator = " · "
+  baseUrl          = "https://iamjorgenunes.com"
+  logo             = "/images/logo.svg"
+  logoAlternate    = "/images/logo-light.svg"
+  logoText         = "Jorge Nunes"
+  logoWidth        = "0px"
+  logoHeight       = "0px"
+
+  trailingSlash = true
+
+  [site.favicon]
+    path  = "/images/favicons"
+    image = "/images/favicon.png"
+
+
+# SEO Metadata
+# -----------------------------------------------------------------------------------------------------------------------------------
+[seo]
+  author = "Jorge Nunes"
+  keywords = [
+    "Jorge Nunes",
+    "AI engineer",
+    "agentic AI",
+    "LangChain",
+    "LangGraph",
+    "RAG",
+    "Kubernetes",
+    "Terraform",
+    "FastAPI",
+    "TypeScript",
+    "senior full stack developer",
+    "Pombal Portugal",
+  ]
+  robots = "index, follow"
+
+  [seo.robotsTxt]
+    enable = true
+    disallow = [
+      "/_astro/",
+      "/cdn-cgi/",
+    ]
+
+  [seo.sitemap]
+    enable  = true
+    exclude = []
+
+
+# Theme settings
+# -----------------------------------------------------------------------------------------------------------------------------------
+[settings]
+  blogFolder      = "blog"
+  servicesFolder  = "services"
+  portfolioFolder = "portfolio"
+
+  stickyHeader = true
+
+  contactFormAction   = "https://formsubmit.co/stamina.nunes@gmail.com"
+  contactFormProvider = "formsubmit.co"
+
+  footerDescription = "Senior Full Stack Developer · Agentic AI · LLMOps · Secure delivery for the European Central Bank and the European Commission."
+
+  [settings.copyright]
+    enable = true
+    text   = "Copyright © {{ year }} Jorge Nunes. Built with Astro on the [Folex Lite](https://github.com/getastrothemes/folex-lite-astro) theme."
+
+  [settings.multilingual]
+    enable               = false
+    defaultLanguage      = "en"
+    disableLanguages     = ["fr"]
+    showDefaultLangInUrl = false
+
+  [settings.contactInfo]
+    address = "Pombal, Portugal"
+    email   = "[stamina.nunes@gmail.com](mailto:stamina.nunes@gmail.com)"
+    phone   = "[+351 914 764 120](tel:+351914764120)"
+
+  [settings.headerOffcanvas]
+    enable      = true
+    logo        = "/images/logo-light.svg"
+    description = "Senior Full Stack Developer building agentic AI platforms and shipping secure systems for restricted environments."
+
+    [settings.headerOffcanvas.button]
+      enable = true
+      label  = "Download CV"
+      url    = "/JorgeNunes_AI_Engineer.pdf"
+
+[settings.navigationButton]
+  enable = true
+  label  = "Get in touch"
+  url    = "#contact"
+
+
+# OpenGraph Metadata
+# -----------------------------------------------------------------------------------------------------------------------------------
+[opengraph]
+  image       = "/images/og-image.jpg"
+  ogLocale    = "en_US"
+  ogType      = "website"
+  twitter     = ""
+  twitterCard = "summary_large_image"
+
+# [head]
+# -----------------------------------------------------------------------------------------------------------------------------------
+[head]
+  content = ""

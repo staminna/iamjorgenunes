@@ -1,0 +1,39 @@
+{
+  "headerPrimary": [
+    {
+      "enable": true,
+      "name": "Home",
+      "url": "/"
+    },
+    {
+      "enable": true,
+      "name": "About",
+      "url": "/about/"
+    },
+    {
+      "enable": true,
+      "name": "Skills",
+      "url": "/#services"
+    },
+    {
+      "enable": true,
+      "name": "Experience",
+      "url": "/#projects"
+    },
+    {
+      "enable": true,
+      "name": "Studies",
+      "url": "/studies/"
+    },
+    {
+      "enable": true,
+      "name": "Certificates",
+      "url": "/certificates/"
+    },
+    {
+      "enable": true,
+      "name": "Contact",
+      "url": "/#footer-with-contact"
+    }
+  ]
+}
