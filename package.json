@@ -2,7 +2,7 @@
   "name": "astro-cv-jorgenunes",
   "type": "module",
   "version": "1.0.0",
-  "description": "Personal CV site for Jorge Nunes built on the Folex Lite Astro theme.",
+  "description": "Personal CV site for Jorge Nunes built on the Astro.",
   "author": "Jorge Nunes",
   "license": "MIT",
   "private": true,
