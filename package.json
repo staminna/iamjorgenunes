@@ -13,14 +13,18 @@
     "tailwindcss"
   ],
   "scripts": {
-    "dev": "npm run toml:watch --watch & astro dev",
-    "build": "npm run toml:watch && astro build && npm run remove-draft-from-sitemap",
-    "preview": "astro build && npm run remove-draft-from-sitemap && astro preview",
+    "dev": "npm run cms:cache && npm run toml:watch --watch & astro dev",
+    "build": "npm run cms:cache && npm run toml:watch && astro build && npm run remove-draft-from-sitemap",
+    "preview": "npm run cms:cache && astro build && npm run remove-draft-from-sitemap && astro preview",
     "astro-check": "astro check",
     "toml:watch": "node scripts/toml-watcher.mjs",
     "generate-favicons": "node ./scripts/generate-favicons.mjs",
     "remove-multilingual": "node ./scripts/remove-multilingual.mjs",
     "remove-draft-from-sitemap": "node ./scripts/remove-draft-from-sitemap.mjs",
+    "cms:cache": "node ./scripts/cms-cache-images.mjs",
+    "cms:bootstrap": "node ./scripts/cms-bootstrap.mjs",
+    "cms:migrate": "node ./scripts/cms-migrate.mjs",
+    "cms:upload-images": "node ./scripts/cms-upload-images.mjs",
     "format": "prettier -w ./src"
   },
   "engines": {

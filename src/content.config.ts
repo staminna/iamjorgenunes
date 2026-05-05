@@ -3,7 +3,7 @@ import config from ".astro/config.generated.json";
 import { button, sectionsSchema } from "./sections.schema";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
-import { directusLoader } from "./lib/directus-loader";
+import { directusLoader, rewriteDirectusUrl } from "./lib/directus-loader";
 // Importing the loader runs its dotenv side-effect, so process.env now
 // reflects the .env file values regardless of the parent shell state.
 
@@ -68,8 +68,8 @@ const serviceCollection = defineCollection({
             title: item.title,
             customSlug: item.slug,
             description: item.description ?? undefined,
-            icon: item.icon ?? undefined,
-            image: item.image ?? undefined,
+            icon: rewriteDirectusUrl(item.icon),
+            image: rewriteDirectusUrl(item.image),
             date: item.date ?? undefined,
           },
         }),
@@ -97,8 +97,10 @@ const portfolioCollection = defineCollection({
             customSlug: item.slug,
             description: item.description ?? undefined,
             date: item.date ?? undefined,
-            image: item.image ?? undefined,
-            images: item.images ?? undefined,
+            image: rewriteDirectusUrl(item.image),
+            images: Array.isArray(item.images)
+              ? item.images.map(rewriteDirectusUrl).filter(Boolean)
+              : undefined,
             categories: item.categories ?? undefined,
             information: item.information ?? undefined,
           },

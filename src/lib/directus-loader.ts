@@ -13,6 +13,21 @@ dotenv.config({ path: path.resolve(here, "../../.env"), override: true });
 const DIRECTUS_URL = process.env.DIRECTUS_URL || "";
 const DIRECTUS_TOKEN = process.env.DIRECTUS_TOKEN || "";
 
+/**
+ * Rewrites a Directus asset URL (https://nowos.varrho.com/assets/<uuid>) to
+ * the local cached path (/images/cms/<uuid>.jpg) populated by
+ * `scripts/cms-cache-images.mjs`. Non-Directus URLs and falsy values pass
+ * through unchanged. This keeps the browser away from the private CMS.
+ */
+export function rewriteDirectusUrl(value?: string | null): string | undefined {
+  if (!value) return undefined;
+  if (!DIRECTUS_URL) return value;
+  const prefix = `${DIRECTUS_URL}/assets/`;
+  if (!value.startsWith(prefix)) return value;
+  const uuid = value.slice(prefix.length).split("?")[0];
+  return `/images/cms/${uuid}.jpg`;
+}
+
 interface DirectusItem {
   id: string | number;
   status?: string;
