@@ -47,7 +47,14 @@ if (!src) {
   throw new Error("No image source provided.");
 }
 
-const normalizedSrc = src.startsWith("/src/assets") ? src : `/src/assets${src}`;
+// Remote URLs (Directus assets, CDN, etc.) skip the /src/assets pipeline.
+const isRemote = /^https?:\/\//i.test(src) || src.startsWith("//");
+
+const normalizedSrc = isRemote
+  ? src
+  : src.startsWith("/src/assets")
+    ? src
+    : `/src/assets${src}`;
 
 const images = import.meta.glob(
   "/src/assets/images/**/*.{jpeg,jpg,png,webp,svg,gif}",
@@ -57,7 +64,7 @@ const rawSvgs = import.meta.glob("/src/assets/images/**/*.svg", {
   import: "default",
 });
 
-const isValidPath = !!images[normalizedSrc];
+const isValidPath = isRemote || !!images[normalizedSrc];
 
 if (!isValidPath) {
   console.error(
@@ -87,7 +94,19 @@ if (inlineSvg && normalizedSrc.includes(".svg")) {
 
 {
   isValidPath &&
-    (inlineSvg && SVG && normalizedSrc.includes(".svg") ? (
+    (isRemote ? (
+      <img
+        src={normalizedSrc}
+        alt={alt || ""}
+        loading={loading || "lazy"}
+        decoding={decoding || "async"}
+        width={width}
+        height={height}
+        style={style}
+        class={Astro.props.class}
+        {...rest}
+      />
+    ) : inlineSvg && SVG && normalizedSrc.includes(".svg") ? (
       <Fragment set:html={SVG} />
     ) : (
       // @ts-expect-error

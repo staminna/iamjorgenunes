@@ -56,6 +56,16 @@ if (Array.isArray(information)) {
   <div class="container">
     <div class="mx-auto w-full max-w-6xl space-y-10 md:space-y-20">
       {
+        Array.isArray(images) && images.length === 1 && (
+          <OptimizedImage
+            src={images[0]}
+            alt={title}
+            class="h-112.5 w-full object-cover md:h-137.5"
+          />
+        )
+      }
+
+      {
         Array.isArray(images) && images.length > 1 && (
           <Swiper
             id="portfolio-slider"
