@@ -7,6 +7,7 @@ import social from "@/config/social.json";
 import { useTranslations } from "@/lib/utils/i18nUtils";
 import { getEntryCTM } from "@/lib/contentParser.astro";
 import ContactForm from "../widgets/ContactForm.astro";
+import { getHomepageCMS, getSiteSettingsCMS } from "@/lib/directus-loader";
 
 const t = await useTranslations(Astro.currentLocale as string);
 
@@ -17,9 +18,21 @@ let {
 } = config.settings;
 const { footerSpaceTop = true } = Astro.props;
 
-const {
+let {
   data: { title, description },
 } = await getEntryCTM("sections", "call-to-action", Astro.currentLocale);
+
+const [cmsHomeFooter, cmsSettings] = await Promise.all([
+  getHomepageCMS(),
+  getSiteSettingsCMS(),
+]);
+if (cmsHomeFooter?.cta_title) title = cmsHomeFooter.cta_title;
+if (cmsHomeFooter?.cta_description) description = cmsHomeFooter.cta_description;
+if (cmsSettings?.footer_description) footerDescription = cmsSettings.footer_description;
+if (cmsSettings?.copyright_text) copyright = { ...copyright, text: cmsSettings.copyright_text };
+if (cmsSettings?.owner_location) address = cmsSettings.owner_location;
+if (cmsSettings?.owner_email) email = `[${cmsSettings.owner_email}](mailto:${cmsSettings.owner_email})`;
+if (cmsSettings?.owner_phone) phone = `[${cmsSettings.owner_phone}](tel:${cmsSettings.owner_phone.replace(/[^+\d]/g, "")})`;
 
 let { form } = (
   await getEntryCTM("sections", "contact-section", Astro.currentLocale)

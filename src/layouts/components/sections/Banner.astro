@@ -7,6 +7,7 @@ import CustomButton from "@/components/CustomButton.astro";
 import overrideObjects from "@/lib/utils/overrideObjects.ts";
 import type { bannerAgencySectionSchema } from "@/sections.schema";
 import OptimizedImage from "@/components/utilities/OptimizedImage.astro";
+import { getHomepageCMS } from "@/lib/directus-loader";
 
 // Type for this section data
 type bannerAgency = Section &
@@ -20,6 +21,22 @@ type Props = {
 let defaultContent = (
   await getEntryCTM("sections", "banner", Astro.currentLocale)
 )?.data as bannerAgency;
+
+// Override with Directus CMS values when present
+const cms = await getHomepageCMS();
+if (cms?.banner_title) defaultContent = { ...defaultContent, title: cms.banner_title };
+if (cms?.banner_description) defaultContent = { ...defaultContent, description: cms.banner_description };
+if (cms?.banner_button_label) {
+  defaultContent = {
+    ...defaultContent,
+    button: {
+      ...(defaultContent.button || {}),
+      enable: true,
+      label: cms.banner_button_label,
+      url: cms.banner_button_url || defaultContent.button?.url || "/",
+    },
+  } as bannerAgency;
+}
 
 // Enables content customization (e.g., title, description) with a fallback to 'defaultContent' if not provided.
 // The 'content' prop should match the structure of 'defaultContent'.

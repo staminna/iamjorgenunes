@@ -3,9 +3,14 @@ import config from ".astro/config.generated.json";
 import { button, sectionsSchema } from "./sections.schema";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
+import { directusLoader } from "./lib/directus-loader";
+// Importing the loader runs its dotenv side-effect, so process.env now
+// reflects the .env file values regardless of the parent shell state.
 
 const portfolioFolder = config.settings.portfolioFolder || "portfolio";
 const servicesFolder = config.settings.servicesFolder || "services";
+
+const useDirectus = !!(process.env.DIRECTUS_URL && process.env.DIRECTUS_TOKEN);
 
 // Universal Page Schema
 export const page = z.object({
@@ -13,7 +18,7 @@ export const page = z.object({
   author: z.string().optional(),
   categories: z.array(z.string()).default(["others"]).optional(),
   tags: z.array(z.string()).default(["others"]).optional(),
-  date: z.date().optional(), // example date format 2022-01-01 or 2022-01-01T00:00:00+00:00 (Year-Month-Day Hour:Minute:Second+Timezone)
+  date: z.coerce.date().optional(),
   description: z.string().optional(),
   image: z.string().optional(),
   draft: z.boolean().optional(),
@@ -30,30 +35,79 @@ export const page = z.object({
   ...sectionsSchema,
 });
 
-// Pages collection schema
+// ----- Pages collection ---------------------------------------------------
 const pagesCollection = defineCollection({
-  loader: glob({ base: "./src/content/pages", pattern: "**/*.{md,mdx}" }),
+  loader: useDirectus
+    ? directusLoader({
+        collection: "pages",
+        sort: "title",
+        renderMarkdownBody: true,
+        transform: (item: any) => ({
+          idSuffix: item.slug,
+          data: {
+            title: item.title,
+            metaDescription: item.meta_description ?? undefined,
+            draft: false,
+          },
+        }),
+      })
+    : glob({ base: "./src/content/pages", pattern: "**/*.{md,mdx}" }),
   schema: page,
 });
 
-// Service collection schema
+// ----- Services collection ------------------------------------------------
 const serviceCollection = defineCollection({
-  loader: glob({
-    base: `./src/content/${servicesFolder}`,
-    pattern: "**/*.{md,mdx}",
-  }),
+  loader: useDirectus
+    ? directusLoader({
+        collection: "services",
+        sort: "sort,date,id",
+        renderMarkdownBody: true,
+        transform: (item: any) => ({
+          idSuffix: item.slug,
+          data: {
+            title: item.title,
+            customSlug: item.slug,
+            description: item.description ?? undefined,
+            icon: item.icon ?? undefined,
+            image: item.image ?? undefined,
+            date: item.date ?? undefined,
+          },
+        }),
+      })
+    : glob({
+        base: `./src/content/${servicesFolder}`,
+        pattern: "**/*.{md,mdx}",
+      }),
   schema: page.extend({
     icon: z.string().optional(),
   }),
 });
 
-// Portfolio Collection
+// ----- Portfolio collection -----------------------------------------------
 const portfolioCollection = defineCollection({
-  // Load Markdown and MDX files in the `src/content/portfolio/` directory.
-  loader: glob({
-    base: `./src/content/${portfolioFolder}`,
-    pattern: "**/*.{md,mdx}",
-  }),
+  loader: useDirectus
+    ? directusLoader({
+        collection: "portfolio",
+        sort: "sort,date,id",
+        renderMarkdownBody: true,
+        transform: (item: any) => ({
+          idSuffix: item.slug,
+          data: {
+            title: item.title,
+            customSlug: item.slug,
+            description: item.description ?? undefined,
+            date: item.date ?? undefined,
+            image: item.image ?? undefined,
+            images: item.images ?? undefined,
+            categories: item.categories ?? undefined,
+            information: item.information ?? undefined,
+          },
+        }),
+      })
+    : glob({
+        base: `./src/content/${portfolioFolder}`,
+        pattern: "**/*.{md,mdx}",
+      }),
   schema: page.extend({
     images: z.array(z.string()).min(1).optional(),
     options: z
@@ -74,14 +128,12 @@ const portfolioCollection = defineCollection({
   }),
 });
 
-// Export collections
+// ----- Sections + homepage stay as glob (layout/options/form schema) ------
 export const collections = {
-  // To prevent, getEntry (Content fetching API) throws error when collection does not exist, we specify a default collection along with the schema of each required collection
   [servicesFolder]: serviceCollection,
   services: serviceCollection,
   [portfolioFolder]: portfolioCollection,
   portfolio: portfolioCollection,
-
   pages: pagesCollection,
   sections: defineCollection({
     loader: glob({ base: "./src/content/sections", pattern: "**/*.{md,mdx}" }),

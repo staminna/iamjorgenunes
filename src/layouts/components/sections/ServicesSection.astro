@@ -7,6 +7,7 @@ import uniqueIdGenerator from "@/lib/utils/uniqueIdGenerator";
 import type { z } from "astro/zod";
 import type { Section } from "@/types";
 import type { servicesSectionSchema } from "@/sections.schema";
+import { getHomepageCMS } from "@/lib/directus-loader";
 
 // Type for this section data
 type Service = {
@@ -23,6 +24,10 @@ type Props = {
 let defaultContent = (
   await getEntryCTM("sections", "services-section", Astro.currentLocale)
 )?.data as ServicesInterface;
+
+const cmsHome = await getHomepageCMS();
+if (cmsHome?.services_section_title)
+  defaultContent = { ...defaultContent, title: cmsHome.services_section_title };
 
 // Enables content customization (e.g., title, description) with a fallback to 'defaultContent' if not provided.
 // The 'content' prop should match the structure of 'defaultContent'.
