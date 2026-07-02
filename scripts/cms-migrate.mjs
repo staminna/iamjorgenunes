@@ -82,7 +82,7 @@ async function migrateSiteSettings() {
     owner_location: "Pombal, Portugal",
     linkedin_url: "https://www.linkedin.com/in/stamina/",
     github_url: "https://www.github.com/staminna",
-    cv_pdf_url: "/JorgeNunes_Senior_Fullstack_AI_Engineer.pdf",
+    cv_pdf_url: "/JorgeNunes_AI_Engineer.pdf",
     copyright_text: cfg.settings.copyright?.text || "",
   });
 }
