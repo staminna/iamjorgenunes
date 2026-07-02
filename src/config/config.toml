@@ -62,7 +62,7 @@
   contactFormAction   = "https://formsubmit.co/stamina.nunes@gmail.com"
   contactFormProvider = "formsubmit.co"
 
-  footerDescription = "Senior Fullstack AI Applied Engineer · React & Node.js · Agentic Systems & MCP · Secure delivery for the European Central Bank and the European Commission."
+  footerDescription = "Senior Fullstack AI Applied Engineer · React & Python · Agentic Systems & MCP · Secure delivery for the European Central Bank and the European Commission."
 
   [settings.copyright]
     enable = true
