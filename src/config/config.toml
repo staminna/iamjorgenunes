@@ -21,20 +21,27 @@
 # SEO Metadata
 # -----------------------------------------------------------------------------------------------------------------------------------
 [seo]
-  author = "Jorge Nunes"
+  author = "Jorge Domingues Nunes"
   keywords = [
     "Jorge Nunes",
+    "Jorge Domingues Nunes",
+    "Senior AI Engineer",
     "AI engineer",
     "agentic AI",
+    "MCP",
+    "Model Context Protocol",
     "LangChain",
     "LangGraph",
     "RAG",
+    "Python",
+    "FastAPI",
+    "React",
+    "TypeScript",
     "Kubernetes",
     "Terraform",
-    "FastAPI",
-    "TypeScript",
-    "senior full stack developer",
+    "AI-assisted development",
     "Pombal Portugal",
+    "remote EU",
   ]
   robots = "index, follow"
 

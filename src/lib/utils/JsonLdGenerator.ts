@@ -77,13 +77,18 @@ export default function JsonLdGenerator(content: JSONLDProps, Astro: any) {
       }));
   }
 
-  // Add `publisher` to jsonLdData
+  // Add `publisher` to jsonLdData — personal CV site, so publish as a Person
   jsonLdData.publisher = {
-    "@type": "Organization",
+    "@type": "Person",
     name: config.seo.author,
+    jobTitle: config.site.tagline,
     url: trailingSlashChecker(Astro.url.origin),
     sameAs: social.main.filter((item) => item.enable).map((item) => item.url),
-    logo: {
+    homeLocation: {
+      "@type": "Place",
+      name: config.settings.contactInfo?.address || "Pombal, Portugal",
+    },
+    image: {
       "@type": "ImageObject",
       url: absoluteUrl(config.site.logo, Astro),
     },

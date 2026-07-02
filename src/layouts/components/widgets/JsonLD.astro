@@ -12,7 +12,7 @@ let {
   description = config.site.description,
   metaDescription = description,
   image = config.opengraph.image,
-  taglineSeparator = " - ",
+  taglineSeparator = config.site.taglineSeparator || " - ",
   disableTagline,
   canonical,
   lang,
