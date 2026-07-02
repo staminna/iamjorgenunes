@@ -60,7 +60,8 @@ if (Array.isArray(information)) {
           <OptimizedImage
             src={images[0]}
             alt={title}
-            class="h-112.5 w-full object-cover md:h-137.5"
+            layout="none"
+            class="aspect-[3/2] w-full bg-white object-contain"
           />
         )
       }
@@ -91,7 +92,8 @@ if (Array.isArray(information)) {
                   <OptimizedImage
                     src={item}
                     alt={`${title} image ${index + 1}`}
-                    class="h-112.5 w-full object-cover md:h-137.5"
+                    layout="none"
+            class="aspect-[3/2] w-full bg-white object-contain"
                   />
                 </SwiperSlide>
               ))}

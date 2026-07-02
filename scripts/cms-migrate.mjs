@@ -82,7 +82,7 @@ async function migrateSiteSettings() {
     owner_location: "Pombal, Portugal",
     linkedin_url: "https://www.linkedin.com/in/stamina/",
     github_url: "https://www.github.com/staminna",
-    cv_pdf_url: "/JorgeNunes_AI_Engineer.pdf",
+    cv_pdf_url: "/JorgeNunes_Senior_Fullstack_AI_Engineer.pdf",
     copyright_text: cfg.settings.copyright?.text || "",
   });
 }
@@ -261,14 +261,27 @@ async function migrateMenu() {
   }
 }
 
+const STEPS = {
+  site_settings: migrateSiteSettings,
+  homepage: migrateHomepage,
+  services: migrateServices,
+  portfolio: migratePortfolio,
+  pages: migratePages,
+  social_links: migrateSocialLinks,
+  menu: migrateMenu,
+};
+
 async function main() {
-  await migrateSiteSettings();
-  await migrateHomepage();
-  await migrateServices();
-  await migratePortfolio();
-  await migratePages();
-  await migrateSocialLinks();
-  await migrateMenu();
+  const onlyArg = process.argv.find((a) => a.startsWith("--only="));
+  const selected = onlyArg
+    ? onlyArg.slice("--only=".length).split(",").map((s) => s.trim()).filter(Boolean)
+    : Object.keys(STEPS);
+  const unknown = selected.filter((s) => !(s in STEPS));
+  if (unknown.length) {
+    console.error(`Unknown step(s): ${unknown.join(", ")}. Valid: ${Object.keys(STEPS).join(", ")}`);
+    process.exit(1);
+  }
+  for (const step of selected) await STEPS[step]();
   console.log("Migration complete.");
 }
 

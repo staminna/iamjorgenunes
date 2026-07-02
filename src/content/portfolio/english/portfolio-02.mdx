@@ -1,7 +1,7 @@
 ---
 title: "Keyprog — E-commerce SaaS"
 customSlug: keyprog-saas
-description: "Principal Engineer — Directus-powered headless CMS with automotive-aftermarket dropshipping, 29+ MCP tools and SSL/2FA-secured Docker stack."
+description: "Principal AI Engineer — Directus headless CMS with a Visual Editor storefront, published npm/Marketplace tooling, 29+ MCP tools, Tavily RAG and a TDD-tested, SSL/2FA-secured Docker stack."
 date: 2024-01-01
 
 categories:
@@ -11,24 +11,29 @@ categories:
 
 information:
   - label: "Role:"
-    value: "Principal Engineer"
+    value: "Principal AI Engineer"
   - label: "Period:"
     value: "01/2024 — 10/2025"
   - label: "Stack:"
-    value: "Node.js, Directus, MCP, PostgreSQL, Redis, Nginx, Stripe"
+    value: "Node.js, TypeScript, Directus, MCP, Tavily, PostgreSQL, Redis, Nginx, Stripe"
   - label: "URL:"
-    value: "keyprog.com"
+    value: "keyprog.pt"
 
 image: "/images/portfolio/2.jpg"
 images:
   - "/images/portfolio/2.jpg"
 ---
 
-Principal engineer on **Keyprog**, an e-commerce platform with dropshipping for electrical devices in the automotive industry. Scalable backend with Directus CMS and a React/TypeScript frontend supporting real-time data processing and full CRUD.
+Principal AI engineer on **[Keyprog](https://keyprog.pt)**, an e-commerce platform with dropshipping for electrical devices in the automotive industry. Scalable backend with Directus headless CMS and a React/TypeScript frontend supporting real-time data processing and full CRUD.
 
 ### Highlights
 
-- **AI integration**: agents with **29+ MCP tools** orchestrating against relational databases, exposing Directus SDK and API support for AI-powered content management.
+- **Directus headless Visual Editor**: integrated the Directus Visual Editor (`@directus/visual-editing` v2) into a Next.js 15 / React 19 storefront for in-context, live editing of headless content — editors update production pages directly against the CMS.
+- **MCP server (published on npm)**: designed and shipped [`@staminna/directus-mcp-server`](https://www.npmjs.com/package/@staminna/directus-mcp-server) (v12) — **29+ tools**, TypeScript, WebSocket and full Directus API coverage — so AI coding agents and product agents can query, mutate and reason over a Directus backend in natural language.
+- **Directus Marketplace extension**: built and published [`@staminna/directus-extension-typeform`](https://www.npmjs.com/package/@staminna/directus-extension-typeform) — bidirectional Typeform integration with one-shot form import, Flow operations over the full Typeform API and webhook sync with auto-mapped collections.
+- **CI/CD tooling (published on npm)**: authored [`cicd-mcp-pipeline`](https://www.npmjs.com/package/cicd-mcp-pipeline) — an MCP server for multi-environment CI/CD pipeline management over Docker and SSH.
+- **RAG & AI**: retrieval pipelines over product and content data with **Tavily** web search, structured prompting to cut hallucinations on catalog tasks, and MLflow-based evals.
+- **Testing & quality**: unit, functional and integration suites with coverage gates and a TDD approach on critical flows.
 - **Containerised stack**: PostgreSQL, Redis caching and Nginx reverse proxy with load balancing; secured with SSL/TLS and two-factor authentication.
 - **E-commerce features**: Stripe payments with automated transactional emails, order confirmations and invoice generation; real-time product / inventory updates via webhook architecture.
 - **Access control**: 4-tier RBAC (Admin, Editor, Client, Public) with JWT, OAuth2 and OpenID.

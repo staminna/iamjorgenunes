@@ -49,7 +49,7 @@ const isDarkAppearance = options?.appearance === "dark";
         <a
           title={toSentenceCase(t("common.learnMoreAbout") + " " + title)}
           class:list={[
-            "order-1 inline-block w-full overflow-hidden",
+            "order-1 inline-block aspect-[3/2] w-full overflow-hidden bg-white",
             layout === "grid" && "mb-8",
           ]}
           href={slug}
@@ -63,8 +63,9 @@ const isDarkAppearance = options?.appearance === "dark";
           <OptimizedImage
             src={image}
             alt={title || "Project image"}
+            layout="none"
             class:list={[
-              "h-100 scale-110 object-cover transition duration-500 group-hover:translate-x-2",
+              "h-full w-full object-contain transition duration-500 group-hover:scale-105",
             ]}
           />
         </a>

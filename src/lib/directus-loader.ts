@@ -177,7 +177,11 @@ export async function getHomepageCMS() {
   if (_homepageCache) return _homepageCache;
   try {
     _homepageCache = await fetchSingleton("homepage");
-  } catch {
+  } catch (err) {
+    console.warn(
+      "[directus] homepage singleton fetch failed — falling back to defaults:",
+      (err as Error).message,
+    );
     _homepageCache = {};
   }
   return _homepageCache;
@@ -189,7 +193,11 @@ export async function getSiteSettingsCMS() {
   if (_settingsCache) return _settingsCache;
   try {
     _settingsCache = await fetchSingleton("site_settings");
-  } catch {
+  } catch (err) {
+    console.warn(
+      "[directus] site_settings singleton fetch failed — falling back to defaults:",
+      (err as Error).message,
+    );
     _settingsCache = {};
   }
   return _settingsCache;

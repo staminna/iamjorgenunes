@@ -1,8 +1,8 @@
 ---
 title: "Exponential — Agentic Platform Factory"
 customSlug: exponential-platform
-description: "Founder & Lead Python Developer — full-stack agentic AI platform with Python backend, React dashboard and Flutter mobile app, deployed on Kubernetes with 2-second time-to-production."
-date: 2025-10-01
+description: "Founder & AI Solutions Architect — agentic AI marketplace & orchestration platform built end-to-end: React dashboard, FastAPI backend (~200 endpoints), Flutter iOS/Android app and an embeddable chatbot widget."
+date: 2025-11-01
 
 categories:
   - Agentic AI
@@ -11,9 +11,9 @@ categories:
 
 information:
   - label: "Role:"
-    value: "Founder & Lead Python Developer"
+    value: "Founder & AI Solutions Architect"
   - label: "Period:"
-    value: "10/2025 — Present"
+    value: "11/2025 — Present"
   - label: "Stack:"
     value: "Python, FastAPI, LangChain, LangGraph, Ollama, Kubernetes, Terraform"
   - label: "URL:"
@@ -24,14 +24,15 @@ images:
   - "/images/portfolio/1.jpg"
 ---
 
-Founded **Exponential**, an agentic platform factory shipping production-grade LLM systems for clients that need to run AI alongside their existing data and infrastructure.
+Founded **Exponential**, an agentic AI marketplace & orchestration platform built end-to-end — React, Node/FastAPI, Flutter and infra.
 
 ### Highlights
 
-- **Multi-model fallback** across Ollama (Llama, Mistral, Qwen local models), OpenAI (GPT-4o), Anthropic (Claude Sonnet/Opus) and Google (Gemini) — automatic failover for 99.9% AI service availability.
-- **Kubernetes pipeline** achieving 2-second time-to-production; Terraform IaC, container orchestration and auto-scaling for multi-tenant environments.
-- **Terraform exposed in the UI** through multi-step forms, letting non-technical users provision cloud resources via guided chatbot-assisted workflows.
-- **MCP servers** bridging localhost development and production VPS; agent pipelines with RAG, vector search (Pinecone, Qdrant, ChromaDB) and cognitive memory for stateful AI reasoning.
-- **React web dashboard** and **Flutter mobile app** for cross-platform agent management with streaming LLM responses.
+- **Full-stack product**: React dashboard, FastAPI backend (~200 endpoints), Flutter iOS/Android app, and an embeddable chatbot widget with session persistence, rate limiting and domain allowlisting.
+- **Agentic orchestration**: multi-agent runtime on **LangChain / LangGraph** with planner/executor patterns and MCP-style tool integrations (Terraform, Docker, UI generation), with Ollama-powered local inference.
+- **RAG, memory & retrieval**: WebRAG over ChromaDB with hybrid search plus **Tavily** web search, per-user conversation memory, and prompt/response caching — **~90% LLM cost reduction** on repeat workloads.
+- **AI-assisted delivery**: day-to-day pair-programming with **Claude Code, Cursor, GitHub Copilot and Codex** across backend, infra and mobile; AI output reviewed and tested before merge.
+- **Testing & quality**: unit suites with coverage thresholds, integration tests against live services and TDD on the orchestration core, all enforced through CI before deploy.
+- **Infra**: Kubernetes with custom CRDs for agent pods, Helm, Kustomize and Terraform across Docker / AWS / GCP / Azure, with Ansible for post-deploy config.
 
-Stack: Python, FastAPI, LangChain, LangGraph, Ollama, Docker, Kubernetes, Terraform, React, Flutter, PostgreSQL, Redis, Pinecone, Qdrant, ChromaDB, GitHub Actions.
+Stack: Python, FastAPI, LangChain, LangGraph, Ollama, Tavily, Docker, Kubernetes, Helm, Terraform, React, Flutter, PostgreSQL, Redis, ChromaDB, GitHub Actions.

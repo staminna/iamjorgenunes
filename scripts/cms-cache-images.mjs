@@ -58,7 +58,7 @@ async function main() {
   // Fields per collection — only portfolio has the gallery M2M.
   const fieldsByCollection = {
     portfolio: "image,images,image_file,gallery.directus_files_id",
-    services: "image,image_file",
+    services: "image",
   };
   for (const collection of Object.keys(fieldsByCollection)) {
     let json;

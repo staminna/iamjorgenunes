@@ -2,19 +2,21 @@
 import social from "@/config/social.json";
 import Icons from "@/helpers/Icons.astro";
 import config from ".astro/config.generated.json";
-import Logo from "../global/Logo.astro";
 import { markdownify } from "@/lib/utils/textConverter";
+import { getLocaleUrlCTM } from "@/lib/utils/i18nUtils";
 import Social from "./Social.astro";
 import CustomButton from "@/components/CustomButton.astro";
 import Navbar from "../global/header/Navbar.astro";
 import { useTranslations } from "@/lib/utils/i18nUtils";
 
 const {
+  site: { logoText, title },
   settings: {
-    headerOffcanvas: { enable, logo, description, button },
+    headerOffcanvas: { enable, description, button },
     contactInfo: { address, phone, email },
   },
 } = config;
+const brandText = logoText || title;
 
 const t = await useTranslations(Astro.currentLocale as string);
 
@@ -36,7 +38,11 @@ if (!enable) {
     <Icons icon="X" class="text-2xl" />
   </button>
 
-  <Logo class="justify-start" width="11.25rem" height="3.125rem" src={logo} />
+  <a
+    href={getLocaleUrlCTM("/", Astro.currentLocale)}
+    class="font-secondary block text-3xl font-semibold tracking-tight md:text-4xl"
+    set:html={markdownify(brandText)}
+  />
   <div class="lg:border-b lg:pb-10">
     {
       (description || t("headerOffcanvas.description")) && (

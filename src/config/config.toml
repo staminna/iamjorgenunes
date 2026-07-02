@@ -1,8 +1,8 @@
 # Site Configuration
 [site]
   title            = "Jorge Nunes"
-  description      = "Senior Full Stack Developer specialised in agentic AI platforms, production-grade LLM systems and secure delivery in restricted environments."
-  tagline          = "AI Engineer · Senior Full Stack Developer"
+  description      = "Senior Fullstack AI Applied Engineer building React/Node.js apps with AI-assisted development, testing and agentic AI tooling across regulated and startup environments."
+  tagline          = "Senior Fullstack AI Applied Engineer"
   taglineSeparator = " · "
   baseUrl          = "https://iamjorgenunes.com"
   logo             = "/images/logo.svg"
@@ -62,7 +62,7 @@
   contactFormAction   = "https://formsubmit.co/stamina.nunes@gmail.com"
   contactFormProvider = "formsubmit.co"
 
-  footerDescription = "Senior Full Stack Developer · Agentic AI · LLMOps · Secure delivery for the European Central Bank and the European Commission."
+  footerDescription = "Senior Fullstack AI Applied Engineer · React & Node.js · Agentic Systems & MCP · Secure delivery for the European Central Bank and the European Commission."
 
   [settings.copyright]
     enable = true
@@ -82,12 +82,12 @@
   [settings.headerOffcanvas]
     enable      = true
     logo        = "/images/logo-light.svg"
-    description = "Senior Full Stack Developer building agentic AI platforms and shipping secure systems for restricted environments."
+    description = "Senior Fullstack AI Applied Engineer building agentic AI platforms and shipping secure systems for restricted environments."
 
     [settings.headerOffcanvas.button]
       enable = true
       label  = "Download CV"
-      url    = "/JorgeNunes_AI_Engineer.pdf"
+      url    = "/JorgeNunes_Senior_Fullstack_AI_Engineer.pdf"
 
 [settings.navigationButton]
   enable = true
