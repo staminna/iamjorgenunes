@@ -34,6 +34,7 @@ export const page = z.object({
   excludeFromSitemap: z.boolean().optional(),
   excludeFromCollection: z.boolean().optional(),
   customSlug: z.string().optional(),
+  weight: z.number().optional(),
   canonical: z.string().optional(),
   keywords: z.array(z.string()).optional(),
   disableTagline: z.boolean().optional(),

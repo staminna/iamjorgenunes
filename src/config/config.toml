@@ -89,12 +89,12 @@
   [settings.headerOffcanvas]
     enable      = true
     logo        = "/images/logo-light.svg"
-    description = "Senior AI Engineer building agentic AI platforms and shipping secure systems for restricted environments."
+    description = "Senior AI & full-stack engineer with over 12 years of experience building agentic AI and Directus headless platforms and shipping secure systems for restricted environments."
 
     [settings.headerOffcanvas.button]
       enable = true
       label  = "Download CV"
-      url    = "/JorgeNunes_AI_Engineer.pdf"
+      url    = "/cv/Jorge_Nunes_CV.pdf"
 
 [settings.navigationButton]
   enable = true

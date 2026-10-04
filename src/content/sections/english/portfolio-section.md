@@ -5,7 +5,7 @@ enable: true
 options:
   layout: "grid"
   appearance: "light"
-  limit: 6
+  limit: 8
 
 button:
   enable: false

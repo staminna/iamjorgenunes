@@ -1,0 +1,39 @@
+---
+title: "Romance in Room — D2C E-commerce Platform"
+customSlug: romance-in-room
+description: "E-commerce Operations & Platform Lead — Directus 11 + PostgreSQL backend for 9,600+ SKUs in five languages, Flutter apps on web, iOS and Android, signed MB WAY / Multibanco payments and idempotent ERP invoicing."
+date: 2025-01-01
+weight: 1
+
+categories:
+  - Directus
+  - E-commerce
+  - Mobile
+
+information:
+  - label: "Role:"
+    value: "E-commerce Operations & Platform Lead"
+  - label: "Period:"
+    value: "2025 — Present"
+  - label: "Stack:"
+    value: "Directus 11, PostgreSQL, Flutter, Docker, ifthenpay, Odoo"
+  - label: "URL:"
+    value: "api.romanceinroom.com"
+
+image: "/images/portfolio/romance-in-room.jpg"
+images:
+  - "/images/portfolio/romance-in-room.jpg"
+---
+
+Own **D2C store in Portugal** — a Directus 11 + PostgreSQL backend with Flutter clients for web, iOS and Android, running in Docker on a VPS. I own the platform end to end, from data model and payments to store releases and day-to-day operations.
+
+### Highlights
+
+- **Platform**: built and run the Directus 11 backend at `api.romanceinroom.com` for **9,600+ SKUs** and **29,000+ images** in five languages (PT / EN / ES / FR / IT), with per-product SEO records and Product + Breadcrumb JSON-LD.
+- **Directus extensions**: custom endpoint for typo- and accent-tolerant search (~10k SKUs, **under 30 ms**); hook extensions for voucher validation with anti-abuse rules and order totals; roles, policies and ACLs for guest vs. authenticated checkout.
+- **Payments & reconciliation**: MB WAY / Multibanco (ifthenpay) webhook with signed callbacks, amount verification, idempotency and anti-replay checks; a 10-minute reconciliation job against the provider's status API; Odoo ERP invoicing with idempotency guards against duplicate invoices.
+- **Supplier integration**: dropship order forwarding through the supplier's API with atomic reservation so concurrent events can't double-order; stock and catalogue sync, and 30-minute tracking polling into shipment records.
+- **Order state machine**: pending → paid → preparing → shipped → delivered / cancelled / refunded, with e-mail, push and in-app notifications at every transition; promotions run from the CMS with no code release.
+- **Compliance & coordination**: 18+ age gate, cookie consent, privacy / terms, IARC rating and Play / App Store policy; sole coordinator across six external parties with runbooks, post-mortems and release plans.
+
+Stack: Directus 11, PostgreSQL, Node.js / TypeScript extensions, Flutter / Dart, Docker, ifthenpay (MB WAY / Multibanco), Odoo ERP, OneSignal, Nginx.

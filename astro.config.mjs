@@ -32,6 +32,9 @@ export default defineConfig({
       prefixDefaultLocale: showDefaultLangInUrl,
     },
   },
+  redirects: {
+    "/cv": "/cv/Jorge_Nunes_CV.pdf",
+  },
   integrations: [sitemapConfig.enable ? sitemap() : null, mdx()],
   markdown: {
     rehypePlugins: [

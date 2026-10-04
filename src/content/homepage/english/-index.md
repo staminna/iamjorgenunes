@@ -1,4 +1,4 @@
 ---
 title: "Jorge Nunes"
-metaDescription: "Senior AI Engineer with 7+ years shipping production web applications and 3+ years building AI-driven products end-to-end — AI-assisted development, testing, agentic workflows, MCP and RAG across regulated and startup environments."
+metaDescription: "Senior AI & full-stack engineer with over 12 years of professional experience — Directus headless platforms, Python / FastAPI, React / Next.js, agentic workflows, MCP and RAG across regulated and startup environments."
 ---
