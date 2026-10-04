@@ -2,6 +2,7 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
+import { unified } from "@astrojs/markdown-remark";
 import rehypeExternalLinks from "rehype-external-links";
 import remarkParseContent from "./src/lib/utils/remarkParseContent.ts";
 import config from ".astro/config.generated.json";
@@ -37,23 +38,26 @@ export default defineConfig({
   },
   integrations: [sitemapConfig.enable ? sitemap() : null, mdx()],
   markdown: {
-    rehypePlugins: [
-      [
-        rehypeExternalLinks,
-        {
-          rel: "noopener noreferrer nofollow",
-          target: "_blank",
-        },
+    // Astro 7 defaults to the Sätteri processor; keep the remark/rehype
+    // pipeline so the custom heading-class plugin keeps working.
+    processor: unified({
+      remarkPlugins: [remarkParseContent],
+      rehypePlugins: [
+        [
+          rehypeExternalLinks,
+          {
+            rel: "noopener noreferrer nofollow",
+            target: "_blank",
+          },
+        ],
       ],
-    ],
-    remarkPlugins: [remarkParseContent],
+    }),
 
     // Code Highlighter https://github.com/shikijs/shiki
     shikiConfig: {
       theme: "light-plus", // https://shiki.style/themes
       wrap: false,
     },
-    extendDefaultPlugins: true,
   },
   vite: {
     plugins: [tailwindcss()]
