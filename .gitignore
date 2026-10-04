@@ -427,3 +427,6 @@ dist/
 ehthumbs.db
 Thumbs.db
 src/assets/images/cms/
+
+# local build tarballs
+*.tgz
