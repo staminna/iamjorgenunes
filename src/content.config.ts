@@ -76,6 +76,7 @@ const serviceCollection = defineCollection({
             customSlug: item.slug,
             description: item.description ?? undefined,
             icon: rewriteDirectusUrl(item.icon),
+            weight: item.sort ?? undefined,
             image: resolveItemImage(item),
             date: item.date ?? undefined,
           },
@@ -116,6 +117,7 @@ const portfolioCollection = defineCollection({
               images: allImages.length ? allImages : undefined,
               categories: item.categories ?? undefined,
               information: item.information ?? undefined,
+              weight: item.sort ?? undefined,
             },
           };
         },

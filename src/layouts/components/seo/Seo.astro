@@ -15,7 +15,7 @@ const {
   disableTagline,
   author = config.seo.author,
   robots = config.seo.robots,
-} = Astro.props;
+} = Astro.props.content ?? Astro.props; // Head.astro passes page meta under `content`
 
 // Normalize title and description
 let resolvedTitle = plainify(metaTitle ?? title ?? config.site.title);

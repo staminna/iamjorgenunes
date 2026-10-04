@@ -8,6 +8,7 @@ import Social from "./Social.astro";
 import CustomButton from "@/components/CustomButton.astro";
 import Navbar from "../global/header/Navbar.astro";
 import { useTranslations } from "@/lib/utils/i18nUtils";
+import { getSiteSettingsCMS } from "@/lib/directus-loader";
 
 const {
   site: { logoText, title },
@@ -17,6 +18,12 @@ const {
   },
 } = config;
 const brandText = logoText || title;
+
+// CV link comes from Directus `site_settings.cv_pdf_url` when available.
+const cmsSettings = await getSiteSettingsCMS();
+const offcanvasButton = cmsSettings?.cv_pdf_url
+  ? { ...button, url: cmsSettings.cv_pdf_url }
+  : button;
 
 const t = await useTranslations(Astro.currentLocale as string);
 
@@ -76,7 +83,7 @@ if (!enable) {
     variant="circle"
     hoverEffect="creative-fill"
     class="btn-accent m-0 ms-auto hidden justify-center lg:flex"
-    {...button}
-    label={button?.label || t("headerOffcanvas.buttonLabel")}
+    {...offcanvasButton}
+    label={offcanvasButton?.label || t("headerOffcanvas.buttonLabel")}
   />
 </div>

@@ -5,15 +5,24 @@ import { getEntryCTM } from "@/lib/contentParser.astro";
 import BannerAgencyStartup from "@/components/sections/Banner.astro";
 import ServicesSection from "@/components/sections/ServicesSection.astro";
 import PortfolioSection from "@/components/sections/PortfolioSection.astro";
+import { getHomepageCMS } from "@/lib/directus-loader";
 
 export function getStaticPaths() {
   return generatePaths();
 }
 
 const page = await getEntryCTM("homepage", "-index", Astro.currentLocale);
+
+// Directus is the source of truth for the homepage meta; markdown is the fallback.
+const cmsHome = await getHomepageCMS();
+const meta = {
+  ...page?.data,
+  ...(cmsHome?.meta_title ? { title: cmsHome.meta_title } : {}),
+  ...(cmsHome?.meta_description ? { metaDescription: cmsHome.meta_description } : {}),
+};
 ---
 
-<Base {...page?.data} headerPosition="fixed" hasHeaderDarkBackground={true}>
+<Base {...meta} headerPosition="fixed" hasHeaderDarkBackground={true}>
   <BannerAgencyStartup />
   <ServicesSection />
   <PortfolioSection />
