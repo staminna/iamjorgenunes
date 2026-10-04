@@ -84,7 +84,9 @@ if (Array.isArray(information)) {
                 delay: 4000,
                 disableOnInteraction: true,
               },
-              loop: true,
+              // Swiper loop mode needs 3+ slides; with 2 it leaves the active slide
+              // off-screen. rewind gives the same prev/next wrap-around for any count.
+              rewind: true,
             }}>
             <SwiperWrapper>
               {images.map((item: string, index: number) => (
