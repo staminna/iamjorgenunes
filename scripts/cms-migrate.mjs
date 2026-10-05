@@ -127,7 +127,7 @@ async function migrateHomepage() {
 }
 
 async function migrateServices() {
-  console.log("→ services");
+  console.log("→ work");
   const dir = path.join(ROOT, "src/content/services/english");
   const files = (await fs.readdir(dir))
     .filter((f) => f.startsWith("service-") && /\.(md|mdx)$/.test(f))
@@ -137,7 +137,7 @@ async function migrateServices() {
     const m = await readMarkdown(path.join(dir, file));
     const slug =
       m.data.customSlug || file.replace(/\.(md|mdx)$/, "");
-    await upsertBySlug("services", slug, {
+    await upsertBySlug("work", slug, {
       status: "published",
       sort: sort++,
       title: m.data.title,

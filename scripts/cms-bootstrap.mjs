@@ -173,17 +173,17 @@ async function bootstrap() {
   await ensureField("homepage", "contact_title", { type: "string", meta: { interface: "input" }, schema: {} });
   await ensureField("homepage", "contact_description", { type: "text", meta: { interface: "input-multiline" }, schema: {} });
 
-  // 3. services (collection)
-  await ensureCollection("services", { icon: "design_services", note: "Skill areas / services rendered on the homepage." });
-  await ensureField("services", "status", STATUS_FIELD);
-  await ensureField("services", "sort", SORT_FIELD);
-  await ensureField("services", "title", { type: "string", meta: { interface: "input", required: true }, schema: { is_nullable: false } });
-  await ensureField("services", "slug", { type: "string", meta: { interface: "input", required: true, note: "URL slug (used in /services/<slug>/)." }, schema: { is_nullable: false, is_unique: true } });
-  await ensureField("services", "description", { type: "text", meta: { interface: "input-multiline" }, schema: {} });
-  await ensureField("services", "icon", { type: "string", meta: { interface: "input", note: "Path to icon SVG (e.g. /images/icons/svg/services/brand.svg)." }, schema: {} });
-  await ensureField("services", "image", { type: "string", meta: { interface: "input", note: "Hero image path." }, schema: {} });
-  await ensureField("services", "date", { type: "date", meta: { interface: "datetime", note: "Used for sorting." }, schema: {} });
-  await ensureField("services", "body", { type: "text", meta: { interface: "input-rich-text-md" }, schema: {} });
+  // 3. work (collection, formerly `services`)
+  await ensureCollection("work", { icon: "design_services", note: "Skill areas / services rendered on the homepage." });
+  await ensureField("work", "status", STATUS_FIELD);
+  await ensureField("work", "sort", SORT_FIELD);
+  await ensureField("work", "title", { type: "string", meta: { interface: "input", required: true }, schema: { is_nullable: false } });
+  await ensureField("work", "slug", { type: "string", meta: { interface: "input", required: true, note: "URL slug (used in /services/<slug>/)." }, schema: { is_nullable: false, is_unique: true } });
+  await ensureField("work", "description", { type: "text", meta: { interface: "input-multiline" }, schema: {} });
+  await ensureField("work", "icon", { type: "string", meta: { interface: "input", note: "Path to icon SVG (e.g. /images/icons/svg/services/brand.svg)." }, schema: {} });
+  await ensureField("work", "image", { type: "string", meta: { interface: "input", note: "Hero image path." }, schema: {} });
+  await ensureField("work", "date", { type: "date", meta: { interface: "datetime", note: "Used for sorting." }, schema: {} });
+  await ensureField("work", "body", { type: "text", meta: { interface: "input-rich-text-md" }, schema: {} });
 
   // 4. portfolio (collection)
   await ensureCollection("portfolio", { icon: "work", note: "Work experience and projects rendered as portfolio entries." });

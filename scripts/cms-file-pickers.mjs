@@ -1,9 +1,9 @@
-// Add proper Directus file-picker fields to portfolio + services so editors
+// Add proper Directus file-picker fields to portfolio + work so editors
 // can pick images from the CMS Library instead of pasting URLs. Idempotent.
 //
 //   portfolio.image_file  -> single file (FK to directus_files)
 //   portfolio.gallery     -> M2M to directus_files (junction: portfolio_files)
-//   services.image_file   -> single file (FK to directus_files)
+//   work.image_file       -> single file (FK to directus_files)
 //
 // Also: migrates existing string `image` URLs into image_file as a UUID, then
 // hides the legacy string field from the admin UI.
@@ -256,14 +256,14 @@ async function main() {
   console.log(`File-picker setup at ${DIRECTUS_URL}`);
   await ensureFileField("portfolio", "image_file");
   await ensureJunctionM2M("portfolio", "gallery", "portfolio_files");
-  await ensureFileField("services", "image_file");
+  await ensureFileField("work", "image_file");
 
   await migrateImagesToFilePicker("portfolio", "image_file", "gallery");
-  await migrateImagesToFilePicker("services", "image_file", null);
+  await migrateImagesToFilePicker("work", "image_file", null);
 
   await hideField("portfolio", "image");
   await hideField("portfolio", "images");
-  await hideField("services", "image");
+  await hideField("work", "image");
 
   console.log("Done.");
 }

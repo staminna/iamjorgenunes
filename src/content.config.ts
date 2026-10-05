@@ -62,10 +62,12 @@ const pagesCollection = defineCollection({
 });
 
 // ----- Services collection ------------------------------------------------
+// Backed by the Directus `work` collection (renamed from `services` on
+// 2026-10-05); the Astro collection key stays `services` for the theme.
 const serviceCollection = defineCollection({
   loader: useDirectus
     ? directusLoader({
-        collection: "services",
+        collection: "work",
         sort: "sort,date,id",
         fields: "*",
         renderMarkdownBody: true,

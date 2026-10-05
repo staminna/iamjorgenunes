@@ -34,7 +34,7 @@ export function fileUuidToLocalPath(uuid?: string | null): string | undefined {
   return `/images/cms/${uuid}.jpg`;
 }
 
-/** Resolve a portfolio/services item's "image" — prefers new file_picker UUID
+/** Resolve a portfolio/work item's "image" — prefers new file_picker UUID
  * over the legacy `image` URL string. Returns the cached local path. */
 export function resolveItemImage(item: {
   image_file?: string | null;
