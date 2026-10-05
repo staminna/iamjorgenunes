@@ -411,6 +411,7 @@ dist/
 # Environment variables
 .env
 .env.local
+.env.hotel
 .env.production.local
 .env.test.local
 
