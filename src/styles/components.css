@@ -281,7 +281,7 @@ header {
   }
 
   /* Show main logo in home page and alternate logo in other pages */
-  &.header-dark {
+  &.has-dark-background {
     .logo {
       @apply inline-block;
     }

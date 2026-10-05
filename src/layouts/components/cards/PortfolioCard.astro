@@ -41,17 +41,26 @@ const isDarkAppearance = options?.appearance === "dark";
       class:list={[
         className,
         "group",
-        layout === "grid" && "flex flex-col items-start justify-start",
+        // Grid: each card spans 4 rows of the parent grid (title, image,
+        // description, categories) so they line up across columns.
+        layout === "grid" && "row-span-4 grid grid-rows-subgrid gap-y-5",
         isDarkAppearance ? "text-white" : "text-text-default",
       ]}
       {...rest}>
+      {title && (
+        <h3 class="text-h3-sm md:text-h3 self-end leading-snug text-inherit">
+          <a
+            href={slug}
+            title={toSentenceCase(t("common.learnMoreAbout") + " " + title)}>
+            {title}
+          </a>
+        </h3>
+      )}
+
       {image && (
         <a
           title={toSentenceCase(t("common.learnMoreAbout") + " " + title)}
-          class:list={[
-            "order-1 inline-block aspect-[3/2] w-full overflow-hidden bg-white",
-            layout === "grid" && "mb-8",
-          ]}
+          class="inline-block aspect-[3/2] w-full overflow-hidden bg-white"
           href={slug}
           {...{
             "data-aos":
@@ -71,11 +80,12 @@ const isDarkAppearance = options?.appearance === "dark";
         </a>
       )}
 
+      {description && <p set:html={markdownify(description)} />}
+
       {hasCategories && (
         <ul
           class:list={[
-            "flex flex-wrap items-center gap-x-2 gap-y-1 opacity-80",
-            layout === "grid" && "order-3 mt-3",
+            "flex flex-wrap items-center gap-x-2 gap-y-1 self-start opacity-80",
             isDarkAppearance ? "text-light" : "text-inherit",
           ]}>
           {categories.map((category: string, index: number) => (
@@ -86,18 +96,6 @@ const isDarkAppearance = options?.appearance === "dark";
           ))}
         </ul>
       )}
-
-      {title && (
-        <h3 class="text-h3-sm md:text-h3 order-2 leading-snug text-inherit">
-          <a
-            href={slug}
-            title={toSentenceCase(t("common.learnMoreAbout") + " " + title)}>
-            {title}
-          </a>
-        </h3>
-      )}
-
-      {description && <p class="mt-4" set:html={markdownify(description)} />}
     </div>
   ) : layout === "slider" ? (
     <div class="py-8 text-center text-sm text-gray-400 italic">

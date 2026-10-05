@@ -83,12 +83,13 @@ if (!enable) {
         layout === "masonry" || layout === "grid" ? (
           <div
             class:list={[
-              "gap-x-20 lg:columns-2",
-              layout === "grid" && "space-y-10",
+              layout === "grid"
+                ? "grid gap-x-20 gap-y-16 lg:grid-cols-2"
+                : "gap-x-20 lg:columns-2",
             ]}>
             {projects.map((item, index) => (
               <PortfolioCard
-                class:list={["space-y-4 overflow-hidden"]}
+                class:list={[layout === "masonry" && "space-y-4", "overflow-hidden"]}
                 options={options}
                 translations={t}
                 content={item}

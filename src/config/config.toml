@@ -1,8 +1,8 @@
 # Site Configuration
 [site]
   title            = "Jorge Nunes"
-  description      = "Senior AI Engineer building Python/FastAPI and React apps with AI-assisted development, testing and agentic AI tooling across regulated and startup environments."
-  tagline          = "Senior AI Engineer"
+  description      = "Senior Directus & full-stack engineer with 12+ years of experience: headless platforms on the latest Directus, Visual Editor, Next.js / React, Monospace and AI agents via MCP."
+  tagline          = "Senior Directus Engineer"
   taglineSeparator = " · "
   baseUrl          = "https://iamjorgenunes.com"
   logo             = "/images/logo.svg"
@@ -25,6 +25,10 @@
   keywords = [
     "Jorge Nunes",
     "Jorge Domingues Nunes",
+    "Senior Directus Engineer",
+    "Directus developer",
+    "Directus Visual Editor",
+    "Monospace",
     "Senior AI Engineer",
     "AI engineer",
     "agentic AI",
@@ -69,7 +73,7 @@
   contactFormAction   = "https://formsubmit.co/stamina.nunes@gmail.com"
   contactFormProvider = "formsubmit.co"
 
-  footerDescription = "Senior AI Engineer · Python · Agentic Systems & MCP · Secure delivery for the European Central Bank and the European Commission."
+  footerDescription = "Senior Directus Engineer · Headless platforms · Next.js · Agents & MCP · Secure delivery for the European Central Bank and the European Commission."
 
   [settings.copyright]
     enable = true

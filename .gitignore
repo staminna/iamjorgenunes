@@ -430,3 +430,6 @@ src/assets/images/cms/
 
 # local build tarballs
 *.tgz
+
+# Directus / database backups (contain production data)
+.directus-backup-*
