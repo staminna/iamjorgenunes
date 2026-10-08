@@ -66,7 +66,7 @@ rsync -az --delete --exclude '.DS_Store' dist/ "${SSH_ALIAS}:${WEBROOT}/"
 
 echo "→ Verifying live site…"
 sleep 2
-if curl -sf "https://${DOMAIN}" | grep -q "Senior AI Engineer"; then
+if curl -sf "https://${DOMAIN}" | grep -q "Platform &amp; Delivery Engineering"; then
   echo "✅ Live: ${DOMAIN} is serving the new build."
 else
   echo "⚠️  Deployed, but verification string not found — check the site manually."
