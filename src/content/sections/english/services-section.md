@@ -1,6 +1,6 @@
 ---
 enable: true
-title: "What I Build"
+title: "What I Build & Run"
 
 options:
   layout: "accordion"

@@ -1,5 +1,5 @@
 ---
-title: "Selected Work & Projects"
+title: "Selected Work & Platforms"
 enable: true
 
 options:

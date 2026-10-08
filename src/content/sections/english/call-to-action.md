@@ -2,7 +2,7 @@
 enable: true
 title: "Let's Build Something"
 description: |
-  Hiring for an agentic AI platform, RAG pipeline or full-stack engagement? Send me a message and I'll get back to you.
+  Need a platform engineer to own your AWS or Hetzner infrastructure, Terraform and Kubernetes, CI/CD pipelines or DevSecOps hardening? Send me a message and I'll get back to you.
 
 button:
   enable: true

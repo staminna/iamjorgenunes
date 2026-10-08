@@ -1,18 +1,19 @@
 ---
-title: "DevOps & IaC"
-customSlug: "devops-iac"
-description: "Kubernetes pipelines hitting 2-second time-to-production. Terraform, Ansible and GitHub Actions across AWS, GCP and Azure."
-date: 2025-07-01
+title: "DevSecOps & Secure Delivery"
+customSlug: "secure-delivery"
+description: "OAuth2 / OIDC, JWT and RBAC, Active Directory, CSP and TLS hardening, and hardened payment webhooks — delivered under SOC 2, ISO 27001 and EU-institution review."
+date: 2026-07-01
 
-icon: "/images/icons/svg/services/modelling.svg"
+icon: "/images/icons/svg/services/advertising.svg"
 image: "/images/services/single.png"
 ---
 
-Infrastructure that ships software fast and stays out of the way. From Terraform modules surfaced in product UIs to multi-environment Kubernetes pipelines, the goal is the same: short feedback loops and reproducible releases.
+Three years inside the European Central Bank taught me what review actually looks like: I ran 20 Apache virtual hosts for my team secured with SHA-256 TLS certificates, reviewed and implemented security policies, and put Content Security Policy in front of XSS and unauthorised access, with auditable logging of every operation. At Co2Offset.ai the same habits carried SOC 2 and ISO 27001 compliance and the Bureau Veritas audit. I bring that to systems that have never been audited.
 
 ## What I deliver
 
-- Kubernetes deployments with autoscaling, health probes and 2-second time-to-production.
-- Terraform IaC across AWS / GCP / Azure; multi-environment workspaces with policy gates.
-- Ansible automation for configuration and application rollout.
-- GitHub Actions / Jenkins pipelines with secret scanning (Trufflehog) and Husky hooks.
+- **Identity done properly** — OAuth2 / OpenID Connect, JWT and RBAC with Auth0 or Firebase, federated into backend sessions; roles, policies and ACLs for guest versus authenticated flows.
+- **Hardened edges** — strict CSP with SHA-256 script hashes, TLS, rate limiting, API gateways that hide tokens from mobile clients.
+- **Payment webhooks that don't trust the callback** — status confirmed against the provider's API, amount checked, constant-time key comparison, anti-replay checks, failing safe to a reconciliation job.
+- **Least privilege everywhere** — deploy users, service tokens and scoped IAM instead of shared admin credentials.
+- **Compliance you can evidence** — auditable logging, rights administration, and audit trails aligned with ISO/IEC 42001.

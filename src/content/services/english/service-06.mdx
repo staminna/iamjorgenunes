@@ -1,18 +1,19 @@
 ---
-title: "Geospatial & Computer Vision"
-customSlug: "geospatial-cv"
-description: "PostGIS, satellite imagery, computer-vision models and Three.js digital twins — delivered for ESA-adjacent and Bureau Veritas-audited workloads."
-date: 2025-05-01
+title: "Platform & Backend Engineering"
+customSlug: "full-stack-engineering"
+description: "Go, Node.js / TypeScript and Python / FastAPI backends on PostgreSQL and Redis — the services that run on the infrastructure, built by the person who runs it."
+date: 2026-05-01
 
-icon: "/images/icons/svg/services/content-marketing.svg"
+icon: "/images/icons/svg/services/marketing.svg"
 image: "/images/services/single.png"
 ---
 
-Geospatial and CV work that has shipped: 200+ containerised endpoints ingesting satellite data, PyTorch / Pillow pipelines for forest carbon estimation, and Three.js 3D digital twins between client forests and the production engine.
+I am a platform engineer who also ships the services on top, which means the infrastructure is designed by someone who knows what runs on it. api.after.zone is a Go backend aggregating seven event sources into one JSON / GeoJSON API — 58,000+ events across 3,100+ cities — with TTL stale-while-revalidate caching and a public health endpoint. Keyprog is a production Directus backend with 9,600+ SKUs, 29,000+ images, five languages, 200+ collections, 100+ API endpoints and 50+ automation flows.
 
 ## What I deliver
 
-- PostGIS schemas, tiling, and ETL for high-volume geospatial workloads.
-- PyTorch / torchvision computer-vision pipelines for production scoring.
-- Bureau Veritas–grade scientific certification (€2.5M of business unlocked at Co2Offset.ai).
-- Real-time digital twins with Three.js and streaming data feeds.
+- **APIs built to be operated** — health endpoints, structured logging, caching with explicit invalidation, graceful shutdown.
+- **Correctness under concurrency** — idempotent ERP invoicing, atomic reservations so concurrent supplier events can't double-order, explicit locking where it counts.
+- **Data modelling that holds** — PostgreSQL / PostGIS and Redis schemas that survive integrations instead of being rewritten around them.
+- **Directus as a production backend** — data models, roles, policies, ACLs, Flows, hooks and extensions, running real e-commerce and booking platforms.
+- **Tested end to end** — unit, integration and e2e suites wired into the pipeline that gates the deploy.

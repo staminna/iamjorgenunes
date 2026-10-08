@@ -1,8 +1,8 @@
 # Site Configuration
 [site]
   title            = "Jorge Nunes"
-  description      = "Senior Directus & full-stack engineer with 12+ years of experience: headless platforms on the latest Directus, Visual Editor, Next.js / React, Monospace and AI agents via MCP."
-  tagline          = "Senior Directus Engineer"
+  description      = "Platform and DevOps engineer with 12+ years of experience running production systems end to end — AWS, Terraform, Ansible, Kubernetes, CI/CD, DevSecOps and OAuth2 / OIDC."
+  tagline          = "Platform & Delivery Engineering"
   taglineSeparator = " · "
   baseUrl          = "https://iamjorgenunes.com"
   logo             = "/images/logo.svg"
@@ -25,27 +25,36 @@
   keywords = [
     "Jorge Nunes",
     "Jorge Domingues Nunes",
-    "Senior Directus Engineer",
-    "Directus developer",
-    "Directus Visual Editor",
-    "Monospace",
-    "Senior AI Engineer",
-    "AI engineer",
-    "agentic AI",
+    "Platform Engineer",
+    "DevOps Engineer",
+    "DevSecOps Engineer",
+    "Site Reliability Engineer",
+    "Cloud Engineer",
+    "AWS",
+    "ECS Fargate",
+    "Terraform",
+    "Ansible",
+    "Kubernetes",
+    "Helm",
+    "Docker",
+    "CI/CD",
+    "GitHub Actions",
+    "GitLab",
+    "Jenkins",
+    "OAuth2",
+    "OpenID Connect",
+    "Linux",
+    "Red Hat",
+    "Nginx",
+    "PostgreSQL",
+    "Go",
+    "Python",
+    "Bash",
     "MCP",
     "Model Context Protocol",
-    "LangChain",
-    "LangGraph",
-    "RAG",
-    "Python",
-    "FastAPI",
-    "React",
-    "TypeScript",
-    "Kubernetes",
-    "Terraform",
-    "AI-assisted development",
     "Pombal Portugal",
     "remote EU",
+    "Brussels",
   ]
   robots = "index, follow"
 
@@ -73,7 +82,7 @@
   contactFormAction   = "https://formsubmit.co/stamina.nunes@gmail.com"
   contactFormProvider = "formsubmit.co"
 
-  footerDescription = "Senior Directus Engineer · Headless platforms · Next.js · Agents & MCP · Secure delivery for the European Central Bank and the European Commission."
+  footerDescription = "Platform & Delivery Engineering · AWS · Terraform · Kubernetes · CI/CD · DevSecOps · Three years inside the European Central Bank; CI/CD at the European Commission; led the Bureau Veritas pipeline audit that unlocked €2.5M at Co2Offset.ai."
 
   [settings.copyright]
     enable = true
@@ -93,7 +102,7 @@
   [settings.headerOffcanvas]
     enable      = true
     logo        = "/images/logo-light.svg"
-    description = "Senior AI & full-stack engineer with over 12 years of experience building agentic AI and Directus headless platforms and shipping secure systems for restricted environments."
+    description = "Hands-on platform and DevOps engineer with 12+ years of experience building and running production systems end to end: infrastructure, delivery pipelines, security and the services on top."
 
     [settings.headerOffcanvas.button]
       enable = true

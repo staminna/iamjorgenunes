@@ -1,18 +1,19 @@
 ---
-title: "RAG & Vector Search"
-customSlug: "rag-vector-search"
-description: "RAG pipelines connecting LLMs to live business data: ingestion, chunking, embeddings, retrieval and ranking with Pinecone, Qdrant or ChromaDB."
-date: 2025-09-01
+title: "Kubernetes & Containers"
+customSlug: "kubernetes-orchestration"
+description: "Helm charts, Kustomize overlays, Gateway API with Gloo / Envoy, auto-scaling and health probes — applied to 400+ containerised microservice endpoints in production."
+date: 2026-09-01
 
-icon: "/images/icons/svg/services/web.svg"
+icon: "/images/icons/svg/services/content-marketing.svg"
 image: "/images/services/single.png"
 ---
 
-Production RAG pipelines that stay accurate as data drifts: incremental ingestion, chunk-aware embeddings, hybrid retrieval (BM25 + dense), reranking, and answer evaluations.
+Containers are where most of my production work lives. At Co2Offset.ai that meant Kubernetes running 400+ containerised microservice endpoints with Helm charts, auto-scaling and health probes in front of PostgreSQL / PostGIS, MongoDB, Redis and Kafka. On my own platforms it means Docker Compose with real parity between a developer's laptop and the production host, so what passes locally is what ships.
 
 ## What I deliver
 
-- Embedding selection and benchmarking against your domain corpus.
-- Vector stores tuned for latency and freshness — Pinecone, Qdrant, ChromaDB.
-- Tool-augmented agents that combine retrieval with structured queries (SQL, GraphQL, MCP).
-- Telemetry: relevance scores, hallucination flags and grounded-answer rates.
+- **Helm and Kustomize** — charts and overlays that make an environment a configuration choice, not a fork.
+- **Gateway API with Gloo / Envoy** — routing, TLS termination and traffic policy at the edge of the cluster.
+- **Health probes and autoscaling** — liveness and readiness that actually gate traffic, with scaling tied to the signal that matters.
+- **Graceful shutdown** — SIGTERM draining so a deploy or a scale-down doesn't drop in-flight requests.
+- **Local/production parity** — Docker Compose stacks that mirror production, plus test-gated `linux/amd64` image builds.

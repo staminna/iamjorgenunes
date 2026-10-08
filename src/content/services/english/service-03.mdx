@@ -1,18 +1,19 @@
 ---
-title: "Full-Stack Engineering"
-customSlug: "full-stack-engineering"
-description: "Python (FastAPI) and Node.js APIs paired with React, Next.js, Astro and Flutter front-ends — typed end-to-end and tested at 95%+ coverage."
-date: 2025-08-01
+title: "CI/CD & Delivery Pipelines"
+customSlug: "cicd-delivery-pipelines"
+description: "GitHub Actions, GitLab and Jenkins with test-gated builds and enforced coverage gates — plus the runbooks, release plans and migrations around them."
+date: 2026-08-01
 
-icon: "/images/icons/svg/services/marketing.svg"
+icon: "/images/icons/svg/services/web.svg"
 image: "/images/services/single.png"
 ---
 
-Full product-lifecycle ownership: API design, data modelling, frontend ergonomics and release. I bias for typed contracts, fast feedback loops and test coverage you can stake a release on.
+I have built delivery pipelines at the European Commission (Jenkins and GitHub Actions with automated builds and Jest testing, through several platform migrations), inside the European Central Bank's GitLab and JIRA release flow, and for every platform I run today. The pipeline is not just the YAML: it is the test gate that stops a bad build, the deploy user that cannot do more than deploy, and the runbook someone else can follow at 3am.
 
 ## What I deliver
 
-- FastAPI and Node.js services with auth, rate limiting, observability and migrations.
-- React / Next.js / Astro web apps and Flutter cross-platform mobile apps.
-- PostgreSQL, Redis and MongoDB modelling — including PostGIS for geospatial.
-- Pytest, Jest and pytest-asyncio at 95%+ coverage; CI gates that block on regressions.
+- **Test-gated builds** — unit, integration and e2e suites that block a release, with enforced coverage gates (my `directus-mcp-server` sits above 97%).
+- **GitHub Actions, GitLab, Jenkins** — whichever you already run, wired for fast feedback and reproducible artefacts.
+- **Least-privilege deploys** — non-root deploy users, fast-forward-only merges, API token rotation.
+- **Release management** — runbooks and release plans; at Keyprog I was sole coordinator across six external parties, including App Store and Play Store compliance.
+- **Production migrations** — build and packaging scripts, staged rollouts and a tested way back.

@@ -1,5 +1,5 @@
 ---
-title: "What I Build"
-metaDescription: "Skill areas Jorge Nunes covers end-to-end: agentic AI, RAG pipelines, full-stack apps, DevOps automation and secure delivery."
+title: "What I Build & Run"
+metaDescription: "What Jorge Nunes builds and runs end to end: cloud infrastructure and IaC, Kubernetes, CI/CD pipelines, DevSecOps, Linux platform operations and agentic ops tooling."
 draft: false
 ---

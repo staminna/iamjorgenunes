@@ -1,7 +1,7 @@
 ---
 enable: true
 title: "Got a project on your mind?"
-description: "Looking for help shipping an agentic platform, RAG pipeline or full-stack product? Send a message and I'll get back to you."
+description: "Looking for a platform engineer for your cloud infrastructure, Kubernetes, CI/CD pipelines or DevSecOps hardening? Send a message and I'll get back to you."
 
 map:
   enable: false
@@ -12,7 +12,7 @@ map:
 contactInformation:
   - title: "Location"
     icon: "/images/icons/svg/location-filled.svg"
-    description: "Pombal, Portugal — remote across EU & global timezones"
+    description: "Pombal, Portugal — CET hours; remote, hybrid or relocation (incl. Brussels)"
     button:
       enable: false
       label: ""
@@ -64,14 +64,20 @@ form:
       dropdown:
         type: ""
         items:
-          - label: "Agentic AI / LLM project"
-            value: "Agentic AI / LLM project"
+          - label: "Cloud infrastructure / AWS / Terraform"
+            value: "Cloud infrastructure / AWS / Terraform"
             selected: false
-          - label: "Full-stack engineering"
-            value: "Full-stack engineering"
+          - label: "Kubernetes / Docker / containers"
+            value: "Kubernetes / Docker / containers"
             selected: false
-          - label: "DevOps / Kubernetes / IaC"
-            value: "DevOps / Kubernetes / IaC"
+          - label: "CI/CD & delivery pipelines"
+            value: "CI/CD & delivery pipelines"
+            selected: false
+          - label: "DevSecOps / identity / compliance"
+            value: "DevSecOps / identity / compliance"
+            selected: false
+          - label: "Platform & backend engineering"
+            value: "Platform & backend engineering"
             selected: false
           - label: "Consulting / advisory"
             value: "Consulting / advisory"
