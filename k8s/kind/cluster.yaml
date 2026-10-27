@@ -1,0 +1,15 @@
+# Cluster local: 1 control plane + 2 workers (para ver o scheduler a
+# distribuir as 2 réplicas). O Traefik escuta em NodePort 30080, mapeado
+# para localhost:18080 no Mac.
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: iamjorgenunes
+nodes:
+  - role: control-plane
+    extraPortMappings:
+      - containerPort: 30080
+        hostPort: 18080
+        listenAddress: "127.0.0.1"
+        protocol: TCP
+  - role: worker
+  - role: worker

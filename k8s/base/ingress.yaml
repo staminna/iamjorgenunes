@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: web
+spec:
+  # Traefik: o ingress-nginx foi retirado em março de 2026 (sem patches).
+  ingressClassName: traefik
+  rules:
+    - host: iamjorgenunes.localhost # *.localhost resolve para 127.0.0.1
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web
+                port:
+                  name: http

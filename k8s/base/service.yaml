@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+spec:
+  type: ClusterIP # só acessível dentro do cluster; a entrada pública é o Ingress
+  selector:
+    app.kubernetes.io/name: iamjorgenunes
+    app.kubernetes.io/component: web
+  ports:
+    - name: http
+      port: 80
+      targetPort: http

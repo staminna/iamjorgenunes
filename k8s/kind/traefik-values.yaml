@@ -1,0 +1,26 @@
+# Traefik como ingress controller do cluster kind local.
+# Instalação: ver k8s/kind/up.sh
+service:
+  type: NodePort
+
+ports:
+  web:
+    nodePort: 30080 # mapeado para 127.0.0.1:18080 em cluster.yaml
+  websecure:
+    expose:
+      default: false # sem TLS no cluster local
+
+ingressClass:
+  enabled: true
+  isDefaultClass: false # os Ingress dizem explicitamente ingressClassName: traefik
+
+providers:
+  kubernetesIngress:
+    enabled: true
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    memory: 128Mi

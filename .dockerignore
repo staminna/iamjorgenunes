@@ -1,0 +1,30 @@
+# Segredos — nunca entram no contexto de build
+.env
+.env.*
+!.env.example
+
+# Dependências e artefactos locais (reconstruídos dentro da imagem)
+node_modules
+dist
+.astro
+src/assets/images/cms
+*.tgz
+.directus-backup-*
+
+# Ferramentas, IDE e VCS
+.git
+.gitignore
+.gitattributes
+.claude
+.ignore
+.vscode
+.idea
+graft
+registered_agents.json
+task_agent_mapping.json
+.DS_Store
+
+# Infra (não faz parte do site)
+k8s
+Dockerfile
+.dockerignore
