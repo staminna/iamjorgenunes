@@ -1,0 +1,40 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# O namespace e as labels comuns vêm do kustomization pai (k8s/base).
+resources:
+  - pvc.yaml
+  - deployment.yaml
+  - service.yaml
+  - ingress.yaml
+  - job-probe-user.yaml
+
+# Config não sensível -> ConfigMap. Mudar um valor gera um nome novo
+# (directus-config-<hash>) e o Deployment faz rollout sozinho.
+configMapGenerator:
+  - name: directus-config
+    literals:
+      - DB_CLIENT=sqlite3
+      - DB_FILENAME=/directus/database/data.db
+      - PUBLIC_URL=http://directus.localhost:18080
+      - ADMIN_EMAIL=admin@example.com
+      - PROBE_EMAIL=probe@example.com
+      - TELEMETRY=false
+      - WEBSOCKETS_ENABLED=false
+      - LOG_STYLE=raw
+      # Sem Redis nem email neste ambiente: só verificar o que existe.
+      - HEALTHCHECK_SERVICES=database,storage
+      # Default é 5m; para readiness queremos reagir em segundos.
+      - HEALTHCHECK_CACHE_TTL=10s
+      # pm2 escreve em $HOME/.pm2; o root FS é só de leitura.
+      - PM2_HOME=/tmp/.pm2
+  - name: directus-probe-script
+    files:
+      - probe-user.sh
+
+# Valores sensíveis -> Secret, a partir de um ficheiro local fora do git
+# (ver .gitignore e directus.secret.env.example). O up.sh gera-o se faltar.
+secretGenerator:
+  - name: directus-secrets
+    envs:
+      - directus.secret.env

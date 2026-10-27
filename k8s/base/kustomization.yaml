@@ -14,6 +14,7 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+  - directus
 
 # O nome final leva um hash do conteúdo (nginx-conf-<hash>). Mudar o
 # default.conf gera um ConfigMap novo e dispara um rolling update sozinho.

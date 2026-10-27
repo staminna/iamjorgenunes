@@ -1,0 +1,97 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: directus
+spec:
+  replicas: 1 # SQLite + volume RWO: um só escritor
+  strategy:
+    type: Recreate # o pod antigo larga o volume antes do novo arrancar
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: iamjorgenunes
+      app.kubernetes.io/component: cms
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: iamjorgenunes
+        app.kubernetes.io/component: cms
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000 # a imagem diz "node" (não numérico); o PSA precisa do uid
+        runAsGroup: 1000
+        fsGroup: 1000
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: directus
+          image: directus/directus:12.5.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8055
+          envFrom:
+            - configMapRef:
+                name: directus-config
+            - secretRef:
+                name: directus-secrets
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            requests:
+              cpu: 100m
+              memory: 320Mi # ~300 MiB medidos em repouso
+            limits:
+              memory: 768Mi
+          # Arranque: bootstrap + migrações na 1.ª vez. Até 5 min antes de
+          # a liveness entrar em jogo.
+          startupProbe:
+            httpGet:
+              path: /server/ping
+              port: http
+            periodSeconds: 5
+            failureThreshold: 60
+          # Liveness: só "o processo responde?". Não depende da BD, senão uma
+          # falha no SQLite levava a reinícios em ciclo.
+          livenessProbe:
+            httpGet:
+              path: /server/ping
+              port: http
+            periodSeconds: 20
+            failureThreshold: 3
+          # Readiness: dependências (BD + storage). No Directus 12 o
+          # /server/health exige token; exec para o ler do Secret em vez de o
+          # pôr em claro num httpGet.httpHeaders.
+          readinessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - >-
+                  wget -q -O /dev/null -T 4
+                  --header "Authorization: Bearer $PROBE_TOKEN"
+                  http://127.0.0.1:8055/server/health
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          volumeMounts:
+            - name: database
+              mountPath: /directus/database
+            - name: uploads
+              mountPath: /directus/uploads
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        - name: database
+          persistentVolumeClaim:
+            claimName: directus-database
+        - name: uploads
+          persistentVolumeClaim:
+            claimName: directus-uploads
+        - name: tmp
+          emptyDir:
+            sizeLimit: 256Mi

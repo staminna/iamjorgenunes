@@ -1,0 +1,32 @@
+# Service normal: só encaminha para pods Ready (readiness = /server/health).
+apiVersion: v1
+kind: Service
+metadata:
+  name: directus
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: iamjorgenunes
+    app.kubernetes.io/component: cms
+  ports:
+    - name: http
+      port: 8055
+      targetPort: http
+---
+# Service interno para o Job de bootstrap: inclui pods ainda NÃO Ready.
+# O pod só fica Ready depois de o utilizador "probe" existir, e é o Job
+# que o cria — sem isto, ovo e galinha.
+apiVersion: v1
+kind: Service
+metadata:
+  name: directus-bootstrap
+spec:
+  type: ClusterIP
+  publishNotReadyAddresses: true
+  selector:
+    app.kubernetes.io/name: iamjorgenunes
+    app.kubernetes.io/component: cms
+  ports:
+    - name: http
+      port: 8055
+      targetPort: http

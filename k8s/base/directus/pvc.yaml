@@ -1,0 +1,21 @@
+# Dois volumes em vez de um com subPath: o kubelet cria subPaths como root,
+# e o Directus corre como uid 1000. No kind, o local-path cria-os com 0777.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: directus-database
+spec:
+  accessModes: ["ReadWriteOnce"]
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: directus-uploads
+spec:
+  accessModes: ["ReadWriteOnce"]
+  resources:
+    requests:
+      storage: 2Gi

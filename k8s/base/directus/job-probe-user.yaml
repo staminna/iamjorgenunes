@@ -1,0 +1,62 @@
+# Jobs são imutáveis: o up.sh apaga este antes de cada apply.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: directus-probe-user
+spec:
+  backoffLimit: 3
+  activeDeadlineSeconds: 600
+  ttlSecondsAfterFinished: 3600
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: iamjorgenunes
+        app.kubernetes.io/component: cms-bootstrap
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 100 # curl_user
+        runAsGroup: 101
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: probe-user
+          image: curlimages/curl:8.23.0
+          command: ["sh", "/scripts/probe-user.sh"]
+          env:
+            - name: ADMIN_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: directus-secrets
+                  key: ADMIN_TOKEN
+            - name: PROBE_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: directus-secrets
+                  key: PROBE_TOKEN
+            - name: PROBE_EMAIL
+              valueFrom:
+                configMapKeyRef:
+                  name: directus-config
+                  key: PROBE_EMAIL
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              memory: 64Mi
+          volumeMounts:
+            - name: scripts
+              mountPath: /scripts
+              readOnly: true
+      volumes:
+        - name: scripts
+          configMap:
+            name: directus-probe-script

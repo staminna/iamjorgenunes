@@ -1,0 +1,2 @@
+# Segredos locais do Directus — gerados pelo k8s/kind/up.sh, nunca no git.
+*.secret.env
