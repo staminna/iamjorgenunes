@@ -6,7 +6,7 @@
 #   SSH_ALIAS=varrho@78.47.109.147 WEBROOT=/path/to/webroot bash scripts/deploy-site.sh
 set -euo pipefail
 
-SSH_ALIAS="${SSH_ALIAS:-production}"
+SSH_ALIAS="${SSH_ALIAS:-hetzner}"
 DOMAIN="iamjorgenunes.com"
 
 [ -d dist ] || { echo "✗ dist/ not found — run 'npm run build' first."; exit 1; }
